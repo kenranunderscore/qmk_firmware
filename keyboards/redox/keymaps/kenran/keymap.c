@@ -90,3 +90,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   )
 };
+
+/* unshifted       shifted
+ * ,                   ;
+ * /                   <
+ * .                   >
+ * :                   ?
+ */
+uint16_t alt_keymap[2][4] = {{ KC_COMM, KC_SLSH, KC_DOT, KC_COLN }, { KC_SCLN, KC_LABK, KC_RABK, KC_QUES }};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case MT_COM ... MT_SLS:
+      if (record->event.pressed) {
+        const uint8_t mod_state = get_mods() & MOD_MASK_SHIFT;
+        clear_mods();
+        if (mod_state) {
+          tap_code16(alt_keymap[1][keycode - MT_COM]);
+        } else {
+          tap_code16(alt_keymap[0][keycode - MT_COM]);
+        }
+        set_mods(mod_state);
+      }
+      break;
+  }
+  return true;
+}
