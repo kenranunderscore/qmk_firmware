@@ -15,9 +15,9 @@ enum custom_keycodes {
   NAV,
   ADJUST,
   MT_COM,
+  MT_SLS,
   MT_DOT,
-  MT_CLN,
-  MT_SLS
+  MT_CLN
 };
 
 // Shortcut to make keymap more readable
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_BSPC ,KC_I    ,KC_N    ,KC_E    ,KC_A    ,MT_COM  ,KC_LBRC ,                          KC_RBRC ,KC_M    ,KC_H    ,KC_T    ,KC_S    ,KC_R    ,KC_QUOT ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT ,KC_Q    ,KC_Z    ,MT_SLS  ,MT_DOT  ,MT_CLN  ,KC_ADPU ,KC_PGDN ,        KC_HOME ,KC_ADEN ,KC_B    ,KC_F    ,KC_G    ,KC_V    ,KC_SLSH ,KC_RSFT ,
+     KC_LSFT ,KC_Q    ,KC_Z    ,MT_SLS  ,MT_DOT  ,MT_CLN  ,KC_ADPU ,KC_PGDN ,        KC_HOME ,KC_ADEN ,KC_B    ,KC_F    ,KC_G    ,KC_V    ,KC_X    ,KC_RSFT ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
      KC_LGUI ,KC_PPLS ,KC_PMNS ,KC_ALAS ,     KC_CTPL ,    KC_SPC  ,KC_DEL  ,        KC_ENT  ,KC_ESC  ,    KC_RALT ,     KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
@@ -101,7 +101,7 @@ uint16_t alt_keymap[2][4] = {{ KC_COMM, KC_SLSH, KC_DOT, KC_COLN }, { KC_SCLN, K
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case MT_COM ... MT_SLS:
+    case MT_COM ... MT_CLN:
       if (record->event.pressed) {
         const uint8_t mod_state = get_mods() & MOD_MASK_SHIFT;
         clear_mods();
