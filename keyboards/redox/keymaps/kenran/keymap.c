@@ -103,16 +103,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MT_COM ... MT_CLN:
       if (record->event.pressed) {
-        const uint8_t mod_state = get_mods() & MOD_MASK_SHIFT;
-        clear_mods();
-        if (mod_state) {
-          tap_code16(alt_keymap[1][keycode - MT_COM]);
+        const uint8_t mod_state = get_mods();
+        const uint16_t key_index = keycode - MT_COM;
+        if (mod_state & MOD_MASK_SHIFT) {
+          unregister_mods(mod_state);
+          tap_code16(alt_keymap[1][key_index]);
+          register_mods(mod_state);
         } else {
-          tap_code16(alt_keymap[0][keycode - MT_COM]);
+          tap_code16(alt_keymap[0][key_index]);
         }
-        set_mods(mod_state);
       }
-      break;
+      return false;
+    default:
+      return true;
   }
-  return true;
 }
