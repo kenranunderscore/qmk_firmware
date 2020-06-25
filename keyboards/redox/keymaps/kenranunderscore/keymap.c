@@ -4,22 +4,16 @@
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
-#define _MTGAP 0
-#define _CMKDH 1
-#define _SYMB 2
-#define _NAV 3
-#define _ADJUST 4
+#define _CMKDH 0
+#define _SYMB 1
+#define _NAV 2
+#define _ADJUST 3
 
 enum custom_keycodes {
-  MTGAP = SAFE_RANGE,
-  COLEMAK_DH,
+  COLEMAK_DH = SAFE_RANGE,
   SYMB,
   NAV,
-  ADJUST,
-  MT_COM,
-  MT_SLS,
-  MT_DOT,
-  MT_CLN
+  ADJUST
 };
 
 // Shortcut to make keymap more readable
@@ -35,20 +29,6 @@ enum custom_keycodes {
 #define KC_ADPU LT(_ADJUST, KC_PGUP)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
-  [_MTGAP] = LAYOUT(
-  //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     KC_NAGR ,KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                                            KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,KC_NAMI ,
-  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TAB  ,KC_Y    ,KC_P    ,KC_O    ,KC_U    ,KC_J    ,SYM_L   ,                          DF(1)   ,KC_K    ,KC_D    ,KC_L    ,KC_C    ,KC_W    ,KC_EQL  ,
-  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_BSPC ,KC_I    ,KC_N    ,KC_E    ,KC_A    ,MT_COM  ,KC_LBRC ,                          KC_RBRC ,KC_M    ,KC_H    ,KC_T    ,KC_S    ,KC_R    ,KC_QUOT ,
-  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT ,KC_Q    ,KC_Z    ,MT_SLS  ,MT_DOT  ,MT_CLN  ,KC_ADPU ,KC_PGDN ,        KC_HOME ,KC_ADEN ,KC_B    ,KC_F    ,KC_G    ,KC_V    ,KC_X    ,KC_RSFT ,
-  //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     KC_LGUI ,KC_PPLS ,KC_PMNS ,KC_ALAS ,     KC_CTPL ,    KC_SPC  ,KC_DEL  ,        KC_ENT  ,KC_ESC  ,    KC_RALT ,     KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT
-  //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
-  ),
 
   [_CMKDH] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -106,31 +86,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   )
 };
-
-/* unshifted       shifted
- * ,                   ;
- * /                   <
- * .                   >
- * :                   ?
- */
-uint16_t alt_keymap[2][4] = {{ KC_COMM, KC_SLSH, KC_DOT, KC_COLN }, { KC_SCLN, KC_LABK, KC_RABK, KC_QUES }};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case MT_COM ... MT_CLN:
-      if (record->event.pressed) {
-        const uint8_t mod_state = get_mods();
-        const uint16_t key_index = keycode - MT_COM;
-        if (mod_state & MOD_MASK_SHIFT) {
-          unregister_mods(mod_state);
-          tap_code16(alt_keymap[1][key_index]);
-          register_mods(mod_state);
-        } else {
-          tap_code16(alt_keymap[0][key_index]);
-        }
-      }
-      return false;
-    default:
-      return true;
-  }
-}
