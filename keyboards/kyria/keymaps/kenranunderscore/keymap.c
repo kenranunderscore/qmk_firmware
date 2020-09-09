@@ -40,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEMAK] = LAYOUT(
       LT(_RAISE, KC_TAB),   KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,    KC_ESC,
       KC_BSPC,   KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O, KC_QUOT,
-      KC_LSFT,                 KC_Z,   KC_X,   KC_C,   KC_D,   KC_V, MO(_LOWER), KC_CAPS, KC_LSFT, KC_LSFT, KC_K,   KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-          KC_LGUI, KC_LALT, MT(MOD_LCTL, KC_DEL), KC_SPC, LT(_RAISE, KC_DEL), LT(_LOWER, KC_ENT), KC_ESC, KC_LALT,  KC_LGUI, KC_RALT
+      KC_LSFT,                 KC_Z,   KC_X,   KC_C,   KC_D,   KC_V, MO(_LOWER), KC_CAPS, KC_PGUP, KC_PGDN, KC_K,   KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+          KC_LGUI, KC_LALT, MT(MOD_LCTL, KC_DEL), KC_SPC, LT(_RAISE, KC_DEL), LT(_LOWER, KC_ENT), KC_ESC, MO(_LOWER), KC_LGUI, KC_RALT
     ),
 /*
  * Lower Layer: Symbols
