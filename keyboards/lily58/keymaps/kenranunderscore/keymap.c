@@ -8,7 +8,8 @@
   #include "ssd1306.h"
 #endif
 
-#define KC_CTPL LCTL_T(KC_BSLS)
+#define LCTL_BSLS LCTL_T(KC_BSLS)
+#define LALT_DEL LALT_T(KC_DEL)
 
 extern uint8_t is_master;
 
@@ -41,13 +42,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                     KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_EQL, \
   KC_BSPC,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                     KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
   KC_LSFT,  KC_Z,   KC_X,    KC_C,    KC_D,    KC_V, KC_LBRC,  KC_RBRC,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-                        MO(_LOWER), KC_LGUI, KC_CTPL, KC_SPC, KC_ENT, KC_ESC, KC_DEL, MO(_RAISE)                  \
+                        MO(_LOWER), KC_LGUI, LCTL_BSLS, KC_SPC, KC_ENT, KC_ESC, MO(_RAISE), LALT_DEL                  \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
+ * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |   `  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   -  |
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
