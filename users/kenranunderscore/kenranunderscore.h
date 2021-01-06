@@ -21,43 +21,65 @@
 #define MC(kc) LCTL_T(KC_##kc)
 #define MG(kc) LGUI_T(KC_##kc)
 
+/* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
 
-/* Colemak DH */
-#define COLEMAK_TOP_L KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
-#define COLEMAK_MID_L KC_A,    KC_R,    KC_S,    KC_T,    KC_G
-#define COLEMAK_BOT_L KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
+/* Thumb keys */
+// I'm aiming to use only 3 thumb keys, so I won't have to change much when
+// using a Corne or similar.
+#define THMB_L1 LT2(DEL)
+#define THMB_L2 LM1
+#define THMB_L3 KC_SPC
+#define THMB_R1 MC(ENT)
+#define THMB_R2 LT1(ESC)
+#define THMB_R3 LM2
 
-#define COLEMAK_TOP_R KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
-#define COLEMAK_MID_R KC_M,    KC_N,    KC_E,    KC_I,    KC_O
-#define COLEMAK_BOT_R KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH
+/* Colemak DH */
+// left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define COLEMAK_TOP_L MA(TAB), KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
+#define COLEMAK_MID_L MC(BSPC),KC_A,    KC_R,    KC_S,    KC_T,    KC_G
+#define COLEMAK_BOT_L KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_D,    KC_V
+
+// right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define COLEMAK_TOP_R KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, MA(EQL)
+#define COLEMAK_MID_R KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT
+#define COLEMAK_BOT_R KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT
 
 /* Symbols */
-#define SYMBOL_TOP_L  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
-#define SYMBOL_MID_L  KC_GRV,  KC_TILD, KC_LPRN, KC_RPRN, _______
-#define SYMBOL_BOT_L  _______, _______, KC_LCBR, KC_RCBR, _______
+// left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define SYMBOL_TOP_L  _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC
+#define SYMBOL_MID_L  _______, KC_EQL,  KC_GRV,  KC_LPRN, KC_RPRN, KC_TILD
+#define SYMBOL_BOT_L  _______, _______, _______, KC_LCBR, KC_RCBR, _______
 
-#define SYMBOL_TOP_R  KC_CIRC, KC_AMPR, KC_ASTR, KC_BSLS, KC_PIPE
-#define SYMBOL_MID_R  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, _______
-#define SYMBOL_BOT_R  _______, _______, _______, _______, _______
+// right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define SYMBOL_TOP_R  KC_CIRC, KC_AMPR, KC_ASTR, KC_BSLS, KC_PIPE, _______
+#define SYMBOL_MID_R  KC_PLUS, KC_MINS, KC_UNDS, KC_LBRC, KC_RBRC, _______
+#define SYMBOL_BOT_R  _______, _______, _______, _______, _______, _______
 
 /* Numbers, function keys, RGB and navigation */
-#define NUM_NAV_TOP_L KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define NUM_NAV_MID_L _______, _______, _______, _______, _______
-#define NUM_NAV_BOT_L KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+// left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define NUM_NAV_TOP_L _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define NUM_NAV_MID_L _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define NUM_NAV_BOT_L _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
-#define NUM_NAV_TOP_R KC_6,    KC_7,    KC_8,    KC_9,    KC_0
-#define NUM_NAV_MID_R _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
-#define NUM_NAV_BOT_R KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
+// right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define NUM_NAV_TOP_R KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
+#define NUM_NAV_MID_R XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______
+#define NUM_NAV_BOT_R XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______
 
 /* RGB, audio */
-#define ADJUST_TOP_L  _______, _______, _______, _______, _______
-#define ADJUST_MID_L  RGB_TOG, RGB_SAI, RGB_HUI, RGB_MOD, _______
-#define ADJUST_BOT_L  _______, RGB_SAD, RGB_VAD, RGB_RMOD, _______
+// left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define ADJUST_TOP_L  _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+#define ADJUST_MID_L  _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_MOD, _______
+#define ADJUST_BOT_L  _______, _______, RGB_SAD, RGB_VAD, RGB_RMOD,_______
 
-#define ADJUST_TOP_R  _______, _______, _______, _______, _______
-#define ADJUST_MID_R  _______, KC_VOLU, KC_VOLD, KC_MUTE, _______
-#define ADJUST_BOT_R  _______, _______, _______, _______, _______
+// right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define ADJUST_TOP_R  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______
+#define ADJUST_MID_R  _______, KC_VOLU, KC_VOLD, KC_MUTE, _______, _______
+#define ADJUST_BOT_R  _______, _______, _______, _______, _______, _______
+
+// misc              ┌────────┬────────┬────────┬────────┬────────┬────────┐
+#define ROW_6_TRANSP  _______, _______, _______, _______, _______, _______
 
 enum userspace_layers {
     COLEMAK = 0,
