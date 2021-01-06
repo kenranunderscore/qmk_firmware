@@ -16,44 +16,36 @@
 #include "kenranunderscore.h"
 #include QMK_KEYBOARD_H
 
-#define KC_ADEN LT(ADJUST, KC_END)
-#define KC_ADPU LT(ADJUST, KC_PGUP)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [COLEMAK] =
     LAYOUT_WRAPPER(
-                   LT2(TAB), COLEMAK_TOP_L,                                                                                COLEMAK_TOP_R, MG(DEL),
-                   MC(BSPC), COLEMAK_MID_L,                                                                                COLEMAK_MID_R, MA(QUOT),
-                   KC_LSFT,  COLEMAK_BOT_L, KC_ADPU, KC_PGDN,                                            KC_HOME, KC_ADEN, COLEMAK_BOT_R, KC_RSFT,
-                   KC_LGUI,  KC_LALT, LM2, KC_SPC, LM1,                                                     LM1, KC_ESC, KC_ENT, KC_LGUI, KC_RALT
-                   // TODO improve thumb keys
+                   COLEMAK_TOP_L,                                                                      COLEMAK_TOP_R,
+                   COLEMAK_MID_L,                                                                      COLEMAK_MID_R,
+                   COLEMAK_BOT_L,             KC_PGUP, KC_PGDN,          KC_HOME, KC_END,              COLEMAK_BOT_R,
+                   KC_LGUI, THMB_L1, THMB_L2, THMB_L3, KC_LALT,          KC_LGUI, THMB_R1, THMB_R2, THMB_R3, KC_RALT
                    ),
     [SYMBOL] =
     LAYOUT_WRAPPER(
-                   _______, SYMBOL_TOP_L,                                             SYMBOL_TOP_R, _______,
-                   _______, SYMBOL_MID_L,                                             SYMBOL_MID_R, _______,
-                   _______, SYMBOL_BOT_L, _______, _______,         _______, _______, SYMBOL_BOT_R, _______,
-                   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+                   SYMBOL_TOP_L,                                                                        SYMBOL_TOP_R,
+                   SYMBOL_MID_L,                                                                        SYMBOL_MID_R,
+                   SYMBOL_BOT_L,              _______, _______,          _______, _______,              SYMBOL_BOT_R,
+                   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
                    ),
     [NUM_NAV] =
     LAYOUT_WRAPPER(
-                   _______, NUM_NAV_TOP_L,                                           NUM_NAV_TOP_R, _______,
-                   _______, NUM_NAV_MID_L,                                           NUM_NAV_MID_R, _______,
-                   _______, NUM_NAV_BOT_L, _______, _______,       _______, _______, NUM_NAV_BOT_R, _______,
-                   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+                   NUM_NAV_TOP_L,                                                                      NUM_NAV_TOP_R,
+                   NUM_NAV_MID_L,                                                                      NUM_NAV_MID_R,
+                   NUM_NAV_BOT_L,             _______, _______,          _______, _______,             NUM_NAV_BOT_R,
+                   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
                    ),
     [ADJUST] =
     LAYOUT_WRAPPER(
-                   _______, ADJUST_TOP_L,                                             ADJUST_TOP_R, _______,
-                   _______, ADJUST_MID_L,                                             ADJUST_MID_R, _______,
-                   _______, ADJUST_BOT_L, _______, _______,         _______, _______, ADJUST_BOT_R, _______,
-                   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+                   ADJUST_TOP_L,                                                                        ADJUST_TOP_R,
+                   ADJUST_MID_L,                                                                        ADJUST_MID_R,
+                   ADJUST_BOT_L, _______, _______,                       _______, _______,              ADJUST_BOT_R,
+                   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
                    ),
 };
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, SYMBOL, NUM_NAV, ADJUST);
-}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -124,6 +116,7 @@ void oled_task_user(void) {
 #endif
 
 #ifdef ENCODER_ENABLE
+
 void encoder_update_user(uint8_t index, bool clockwise) {
     // Volume control
     if (clockwise) {
@@ -132,4 +125,5 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         tap_code(KC_PGDN);
     }
 }
+
 #endif
