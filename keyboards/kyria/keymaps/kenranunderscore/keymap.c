@@ -17,11 +17,11 @@
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [COLEMAK] =
+    [MTGAP] =
     LAYOUT_WRAPPER(
-                   COLEMAK_TOP_L,                                                                      COLEMAK_TOP_R,
-                   COLEMAK_MID_L,                                                                      COLEMAK_MID_R,
-                   COLEMAK_BOT_L,             KC_PGUP, KC_PGDN,          KC_HOME, KC_END,              COLEMAK_BOT_R,
+                   MTGAP_TOP_L,                                                                         MTGAP_TOP_R,
+                   MTGAP_MID_L,                                                                         MTGAP_MID_R,
+                   MTGAP_BOT_L,               KC_PGUP, KC_PGDN,          KC_HOME, KC_END,               MTGAP_BOT_R,
                    KC_LGUI, THMB_L1, THMB_L2, THMB_L3, KC_LALT,          KC_LGUI, THMB_R1, THMB_R2, THMB_R3, KC_RALT
                    ),
     [SYMBOL] =
@@ -83,7 +83,7 @@ static void render_status(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
-    case COLEMAK:
+    case  MTGAP:
         oled_write_P(PSTR("CLMK\n"), false);
         break;
     case SYMBOL:
