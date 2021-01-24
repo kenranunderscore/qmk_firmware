@@ -12,12 +12,12 @@
 extern uint8_t is_master;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [COLEMAK] =
+    [MTGAP] =
     LAYOUT_WRAPPER(
                    NUM_NAV_TOP_L,                                                     NUM_NAV_TOP_R,
-                   COLEMAK_TOP_L,                                                     COLEMAK_TOP_R,
-                   COLEMAK_MID_L,                                                     COLEMAK_MID_R,
-                   COLEMAK_BOT_L,             _______,           _______,             COLEMAK_BOT_R,
+                   MTGAP_TOP_L,                                                         MTGAP_TOP_R,
+                   MTGAP_MID_L,                                                         MTGAP_MID_R,
+                   MTGAP_BOT_L,               _______,           _______,               MTGAP_BOT_R,
                    XXXXXXX, THMB_L1, THMB_L2, THMB_L3,           THMB_R1, THMB_R2, THMB_R3, XXXXXXX
                    ),
     [SYMBOL] =
@@ -81,13 +81,3 @@ void oled_task_user(void) {
   }
 }
 #endif // OLED_DRIVER_ENABLE
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-#ifdef OLED_DRIVER_ENABLE
-    set_keylog(keycode, record);
-#endif
-    // set_timelog();
-  }
-  return true;
-}
