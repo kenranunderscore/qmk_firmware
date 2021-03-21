@@ -4,7 +4,6 @@
 #include QMK_KEYBOARD_H
 
 // TODO: tap dance: shift shift -> toggle caps?
-// TODO: combos for layers, maybe one-shot
 
 /* Layer taps */
 #define LT1(kc) LT(SYMBOL, KC_##kc)
@@ -57,7 +56,7 @@
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define SYMBOL_TOP_R  KC_CIRC, KC_AMPR, KC_ASTR, KC_BSLS, KC_PIPE, _______
 #define SYMBOL_MID_R  KC_PLUS, KC_MINS, KC_UNDS, KC_LBRC, KC_RBRC, _______
-#define SYMBOL_BOT_R  _______, _______, _______, _______, _______, _______
+#define SYMBOL_BOT_R  _______, _______, _______, _______, _______, KC_CAPS
 
 /* Numbers, function keys, RGB and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
