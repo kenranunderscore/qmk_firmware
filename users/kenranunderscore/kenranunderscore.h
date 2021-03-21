@@ -21,6 +21,9 @@
 #define MC(kc) LCTL_T(KC_##kc)
 #define MG(kc) LGUI_T(KC_##kc)
 
+/* One-shot modifiers */
+#define OS(mod) OSM(MOD_##mod)
+
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
 
@@ -38,12 +41,12 @@
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_L   MA(TAB), KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
 #define MTGAP_MID_L   MC(BSPC),KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
-#define MTGAP_BOT_L   KC_LSFT, KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
+#define MTGAP_BOT_L   OS(LSFT),KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
 
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    MA(MINS)
 #define MTGAP_MID_R   KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    KC_QUOT
-#define MTGAP_BOT_R   KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    KC_RSFT
+#define MTGAP_BOT_R   KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    OS(RSFT)
 
 /* Symbols */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
