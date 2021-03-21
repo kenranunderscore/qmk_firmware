@@ -13,9 +13,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 /*         const uint8_t mod_state = get_mods(); */
 /*         const uint16_t key_index = keycode - MTG_CMM; */
 /*         if (mod_state & MOD_MASK_SHIFT) { */
-/*           unregister_mods(mod_state); */
+/*           unregister_mods(mod_state & MOD_MASK_SHIFT); */
 /*           tap_code16(mtgap_alt_keymap[1][key_index]); */
-/*           register_mods(mod_state); */
+/*           register_mods(mod_state & MOD_MASK_SHIFT); */
 /*         } else { */
 /*           tap_code16(mtgap_alt_keymap[0][key_index]); */
 /*         } */
