@@ -37,8 +37,8 @@
 /* Colemak DH */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_L   MA(TAB), KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
-#define MTGAP_MID_L   MC(BSPC),KC_I,    KC_N,    KC_E,    KC_A,    MTG_CMM
-#define MTGAP_BOT_L   KC_LSFT, KC_Q,    KC_Z,    MTG_SLS, MTG_DOT, MTG_CLN
+#define MTGAP_MID_L   MC(BSPC),KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
+#define MTGAP_BOT_L   KC_LSFT, KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
 
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    MA(MINS)
@@ -88,9 +88,9 @@ enum userspace_layers {
     ADJUST,
 };
 
-enum userspace_keycodes {
-    MTG_CMM = SAFE_RANGE,
-    MTG_SLS,
-    MTG_DOT,
-    MTG_CLN,
-};
+/* enum userspace_keycodes { */
+/*     MTG_CMM = SAFE_RANGE, */
+/*     MTG_SLS, */
+/*     MTG_DOT, */
+/*     MTG_CLN, */
+/* }; */
