@@ -84,7 +84,7 @@ static void render_status(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
     case  MTGAP:
-        oled_write_P(PSTR("CLMK\n"), false);
+        oled_write_P(PSTR("MTGAP\n"), false);
         break;
     case SYMBOL:
         oled_write_P(PSTR("SYM\n"), false);
