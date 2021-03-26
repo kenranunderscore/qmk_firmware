@@ -29,21 +29,21 @@
 /* Thumb keys */
 // I'm aiming to use only 3 thumb keys, so I won't have to change much when
 // using a Corne or similar.
-#define THMB_L1 LT2(DEL)
+#define THMB_L1 MA(DEL)
 #define THMB_L2 LM1
 #define THMB_L3 KC_SPC
 #define THMB_R1 MC(ENT)
 #define THMB_R2 LT1(ESC)
-#define THMB_R3 LM2
+#define THMB_R3 KC_LGUI
 
 /* Colemak DH */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define MTGAP_TOP_L   MA(TAB), KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
+#define MTGAP_TOP_L   LT2(TAB),KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
 #define MTGAP_MID_L   MC(BSPC),KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
-#define MTGAP_BOT_L   OS(LSFT),MG(Q),   KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
+#define MTGAP_BOT_L   OS(LSFT),KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
 
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    MA(MINS)
+#define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    LT2(MINS)
 #define MTGAP_MID_R   KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    KC_QUOT
 #define MTGAP_BOT_R   KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    OS(RSFT)
 
@@ -58,7 +58,7 @@
 #define SYMBOL_MID_R  KC_PLUS, KC_MINS, KC_UNDS, KC_LBRC, KC_RBRC, _______
 #define SYMBOL_BOT_R  _______, _______, _______, _______, _______, KC_CAPS
 
-/* Numbers, function keys, RGB and navigation */
+/* Numbers, function keys, and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define NUM_NAV_TOP_L _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
 #define NUM_NAV_MID_L _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
