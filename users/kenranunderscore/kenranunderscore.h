@@ -61,13 +61,13 @@
 /* Numbers, function keys, and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define NUM_NAV_TOP_L _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define NUM_NAV_MID_L _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define NUM_NAV_BOT_L _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define NUM_NAV_MID_L _______, _______, _______, _______, _______, _______
+#define NUM_NAV_BOT_L _______, _______, _______, _______, _______, _______
 
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define NUM_NAV_TOP_R KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
-#define NUM_NAV_MID_R XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______
-#define NUM_NAV_BOT_R XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______
+#define NUM_NAV_MID_R _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______
+#define NUM_NAV_BOT_R _______, _______, _______, _______, _______, _______
 
 /* RGB, audio */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
