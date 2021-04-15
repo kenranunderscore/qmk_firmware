@@ -19,31 +19,31 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] =
     LAYOUT_WRAPPER(
-                   MTGAP_TOP_L,                                                                         MTGAP_TOP_R,
-                   MTGAP_MID_L,                                                                         MTGAP_MID_R,
-                   MTGAP_BOT_L,               KC_PGUP, KC_PGDN,          KC_HOME, KC_END,               MTGAP_BOT_R,
-                   KC_LGUI, THMB_L1, THMB_L2, THMB_L3, KC_LALT,          KC_LGUI, THMB_R1, THMB_R2, THMB_R3, KC_RALT
+                   MTGAP_TOP_L,                                                                          MTGAP_TOP_R,
+                   MTGAP_MID_L,                                                                          MTGAP_MID_R,
+                   MTGAP_BOT_L,               KC_PGUP, KC_PGDN,          KC_HOME, KC_END,                MTGAP_BOT_R,
+                   XXXXXXX, THMB_L1, THMB_L2, THMB_L3, XXXXXXX,          XXXXXXX, THMB_R1, THMB_R2, THMB_R3, XXXXXXX
                    ),
     [SYMBOL] =
     LAYOUT_WRAPPER(
                    SYMBOL_TOP_L,                                                                        SYMBOL_TOP_R,
                    SYMBOL_MID_L,                                                                        SYMBOL_MID_R,
                    SYMBOL_BOT_L,              _______, _______,          _______, _______,              SYMBOL_BOT_R,
-                   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+                   XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
     [NUM_NAV] =
     LAYOUT_WRAPPER(
                    NUM_NAV_TOP_L,                                                                      NUM_NAV_TOP_R,
                    NUM_NAV_MID_L,                                                                      NUM_NAV_MID_R,
                    NUM_NAV_BOT_L,             _______, _______,          _______, _______,             NUM_NAV_BOT_R,
-                   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+                   XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
     [ADJUST] =
     LAYOUT_WRAPPER(
                    ADJUST_TOP_L,                                                                        ADJUST_TOP_R,
                    ADJUST_MID_L,                                                                        ADJUST_MID_R,
                    ADJUST_BOT_L, _______, _______,                       _______, _______,              ADJUST_BOT_R,
-                   _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______
+                   XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
 };
 

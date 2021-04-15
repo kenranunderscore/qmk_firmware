@@ -13,7 +13,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
                           MTGAP_BOT_L                     ,KC_PGUP ,KC_PGDN ,        KC_HOME ,KC_END  ,                     MTGAP_BOT_R                     ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     KC_LGUI ,XXXXXXX ,XXXXXXX ,THMB_L1 ,     THMB_L2 ,    THMB_L3 ,KC_LALT ,        KC_LGUI ,THMB_R1 ,    THMB_R2 ,     THMB_R3 ,XXXXXXX ,XXXXXXX ,XXXXXXX
+     XXXXXXX ,XXXXXXX ,XXXXXXX ,THMB_L1 ,     THMB_L2 ,    THMB_L3 ,XXXXXXX ,        XXXXXXX ,THMB_R1 ,    THMB_R2 ,     THMB_R3 ,XXXXXXX ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
