@@ -56,7 +56,7 @@
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define SYMBOL_TOP_R  KC_CIRC, KC_AMPR, KC_ASTR, KC_BSLS, KC_PIPE, _______
 #define SYMBOL_MID_R  KC_PLUS, KC_MINS, KC_UNDS, KC_LBRC, KC_RBRC, _______
-#define SYMBOL_BOT_R  _______, _______, _______, _______, _______, KC_CAPS
+#define SYMBOL_BOT_R  _______, _______, KC_LT,   KC_GT,    _______, KC_CAPS
 
 /* Numbers, function keys, and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
