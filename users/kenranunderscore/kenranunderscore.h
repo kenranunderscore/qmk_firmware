@@ -34,7 +34,7 @@
 #define THMB_L3 KC_SPC
 #define THMB_R1 MC(ENT)
 #define THMB_R2 LT1(ESC)
-#define THMB_R3 KC_LGUI
+#define THMB_R3 MG(DEL)
 
 /* Colemak DH */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
