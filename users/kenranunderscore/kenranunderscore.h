@@ -3,8 +3,6 @@
 #include "quantum.h"
 #include QMK_KEYBOARD_H
 
-// TODO: tap dance: shift shift -> toggle caps?
-
 /* Layer taps */
 #define LT1(kc) LT(SYMBOL, KC_##kc)
 #define LT2(kc) LT(NUM_NAV, KC_##kc)
