@@ -18,6 +18,12 @@
 #define MC(kc) LCTL_T(KC_##kc)
 #define MG(kc) LGUI_T(KC_##kc)
 
+/* Umlauts and German ß; depend on US AltGr Intl layout */
+#define A_UML RALT(KC_Q)
+#define O_UML RALT(KC_P)
+#define U_UML RALT(KC_Y)
+#define S_GER RALT(KC_S)
+
 /* One-shot modifiers */
 #define OS(mod) OSM(MOD_##mod)
 
@@ -65,7 +71,7 @@
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define NUM_NAV_TOP_R KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
 #define NUM_NAV_MID_R _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______
-#define NUM_NAV_BOT_R _______, _______, _______, _______, _______, _______
+#define NUM_NAV_BOT_R _______, A_UML,   O_UML,   U_UML,   S_GER,   _______
 
 /* RGB, audio */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
