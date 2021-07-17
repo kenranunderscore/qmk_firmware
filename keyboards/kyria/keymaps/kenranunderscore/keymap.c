@@ -117,13 +117,13 @@ void oled_task_user(void) {
 
 #ifdef ENCODER_ENABLE
 
-void encoder_update_user(uint8_t index, bool clockwise) {
-    // Volume control
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (clockwise) {
         tap_code(KC_PGUP);
     } else {
         tap_code(KC_PGDN);
     }
+    return true;
 }
 
 #endif
