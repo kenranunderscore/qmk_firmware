@@ -1,8 +1,8 @@
 #include "kenranunderscore.h"
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, SYMBOL, NUM_NAV, ADJUST);
-}
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*     return update_tri_layer_state(state, SYMBOL, NUM_NAV, ADJUST); */
+/* } */
 
 /* uint16_t mtgap_alt_keymap[2][4] = {{ KC_COMM, KC_SLSH, KC_DOT, KC_COLN }, { KC_SCLN, KC_LABK, KC_RABK, KC_QUES }}; */
 

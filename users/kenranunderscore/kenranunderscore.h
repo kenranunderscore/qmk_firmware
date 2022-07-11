@@ -40,7 +40,7 @@
 #define THMB_R2 LT1(ESC)
 #define THMB_R3 MG(DEL)
 
-/* Colemak DH */
+/* MTGAP layout */
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_L   LT2(TAB),KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
 #define MTGAP_MID_L   MC(BSPC),KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM

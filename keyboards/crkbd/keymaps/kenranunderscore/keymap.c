@@ -17,29 +17,115 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "kenranunderscore.h"
+#include "oneshot.h"
 #include QMK_KEYBOARD_H
 
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [MTGAP] = LAYOUT_WRAPPER(MTGAP_TOP_L, MTGAP_TOP_R,
-                           MTGAP_MID_L, MTGAP_MID_R,
-                           MTGAP_BOT_L, MTGAP_BOT_R,
-                           THMB_L1, THMB_L2, THMB_L3, THMB_R1, THMB_R2, THMB_R3),
+// FIXME(Johannes): learn what A and G mean
+#define HOME G(KC_LEFT)
+#define END G(KC_RGHT)
+#define FWD G(KC_RBRC)
+#define BACK G(KC_LBRC)
+#define TABL G(S(KC_LBRC))
+#define TABR G(S(KC_RBRC))
+#define SPCL A(G(KC_LEFT))
+#define SPC_R A(G(KC_RGHT))
+#define LA_SYM MO(SYM)
+#define LA_NAV MO(NAV)
 
-  [SYMBOL] = LAYOUT_WRAPPER(SYMBOL_TOP_L, SYMBOL_TOP_R,
-                            SYMBOL_MID_L, SYMBOL_MID_R,
-                            SYMBOL_BOT_L, SYMBOL_BOT_R,
-                            ROW_6_TRANSP),
-
-  [NUM_NAV] = LAYOUT_WRAPPER(NUM_NAV_TOP_L, NUM_NAV_TOP_R,
-                             NUM_NAV_MID_L, NUM_NAV_MID_R,
-                             NUM_NAV_BOT_L, NUM_NAV_BOT_R,
-                             ROW_6_TRANSP),
-
-  [ADJUST] = LAYOUT_WRAPPER(ADJUST_TOP_L, ADJUST_TOP_R,
-                            ADJUST_MID_L, ADJUST_MID_R,
-                            ADJUST_BOT_L, ADJUST_BOT_R,
-                            ROW_6_TRANSP),
+enum layers {
+    DEF,
+    SYM,
+    NAV,
+    NUM,
 };
+
+enum keycodes {
+    // Custom oneshot mod implementation with no timers.
+    OS_SHFT = SAFE_RANGE,
+    OS_CTRL,
+    OS_ALT,
+    OS_CMD,
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [DEF] = LAYOUT_WRAPPER(
+        LT2(TAB),KC_Y,   KC_P,    KC_O,    KC_U,    KC_J,     KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    LT2(MINS),
+        MC(BSPC),KC_I,   KC_N,    KC_E,    KC_A,    KC_COMM,  KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    KC_QUOT,
+        KC_LSFT ,KC_Q,   KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN,  KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    KC_RSFT,
+                             MA(DEL),  LA_NAV,  KC_SPC, KC_RSFT,  LA_SYM, MG(DEL) ),
+
+  [SYM] = LAYOUT_WRAPPER(
+        _______, KC_ESC,  KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD, KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC, KC_GRV,  _______,
+        _______, KC_MINS, KC_ASTR, KC_EQL,  KC_UNDS, KC_DLR,  KC_HASH, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT, _______,
+        _______, KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_PERC, XXXXXXX, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM, KC_CAPS,
+                             _______, _______, _______, _______, _______, _______ ),
+
+  [NAV] = LAYOUT_WRAPPER(
+        _______, KC_TAB,  XXXXXXX,  TABL,    TABR,    KC_VOLU, RESET,   HOME,    KC_UP,   END,     KC_DEL, _______,
+        _______, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  KC_VOLD, KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, _______,
+        _______, SPCL,    SPC_R,   BACK,    FWD,     KC_MPLY, XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX, KC_ENT,  _______,
+                             _______, _______, _______, _______, _______, _______ ),
+
+  [NUM] = LAYOUT_WRAPPER(
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+        _______, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  KC_F11,  KC_F10,  OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT, _______,
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+                             _______, _______, _______, _______, _______, _______ ),
+};
+
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+    case LA_SYM:
+    case LA_NAV:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+    case LA_SYM:
+    case LA_NAV:
+    case KC_LSFT:
+    case OS_SHFT:
+    case OS_CTRL:
+    case OS_ALT:
+    case OS_CMD:
+        return true;
+    default:
+        return false;
+    }
+}
+
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state = os_up_unqueued;
+oneshot_state os_cmd_state = os_up_unqueued;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    update_oneshot(
+        &os_shft_state, KC_LSFT, OS_SHFT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_ctrl_state, KC_LCTL, OS_CTRL,
+        keycode, record
+    );
+    update_oneshot(
+        &os_alt_state, KC_LALT, OS_ALT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_cmd_state, KC_LCMD, OS_CMD,
+        keycode, record
+    );
+    return true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, SYM, NAV, NUM);
+}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
