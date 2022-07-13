@@ -20,17 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "oneshot.h"
 #include QMK_KEYBOARD_H
 
-// FIXME(Johannes): learn what A and G mean
-#define HOME G(KC_LEFT)
-#define END G(KC_RGHT)
-#define FWD G(KC_RBRC)
-#define BACK G(KC_LBRC)
-#define TABL G(S(KC_LBRC))
-#define TABR G(S(KC_RBRC))
-#define SPCL A(G(KC_LEFT))
-#define SPC_R A(G(KC_RGHT))
 #define LA_SYM MO(SYM)
 #define LA_NAV MO(NAV)
+#define LA_NUM MO(NUM)
 
 enum layers {
     DEF,
@@ -49,21 +41,21 @@ enum keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT_WRAPPER(
-        LT2(TAB),KC_Y,   KC_P,    KC_O,    KC_U,    KC_J,     KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    LT2(MINS),
-        MC(BSPC),KC_I,   KC_N,    KC_E,    KC_A,    KC_COMM,  KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    KC_QUOT,
-        KC_LSFT ,KC_Q,   KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN,  KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    KC_RSFT,
-                             MA(DEL),  LA_NAV,  KC_SPC, KC_RSFT,  LA_SYM, MG(DEL) ),
+        XXXXXXX, KC_Y,   KC_P,    KC_O,    KC_U,    KC_J,     KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    XXXXXXX,
+        XXXXXXX, KC_I,   KC_N,    KC_E,    KC_A,    KC_COMM,  KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    XXXXXXX,
+        XXXXXXX, KC_Q,   KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN,  KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    XXXXXXX,
+                             XXXXXXX,  LA_NAV,  KC_SPC, LA_NUM,  LA_SYM, XXXXXXX ),
 
   [SYM] = LAYOUT_WRAPPER(
         _______, KC_ESC,  KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD, KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC, KC_GRV,  _______,
         _______, KC_MINS, KC_ASTR, KC_EQL,  KC_UNDS, KC_DLR,  KC_HASH, OS_CMD,  OS_ALT,  OS_CTRL, OS_SHFT, _______,
-        _______, KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_PERC, XXXXXXX, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM, KC_CAPS,
+        _______, KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_PERC, XXXXXXX, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM, _______,
                              _______, _______, _______, _______, _______, _______ ),
 
   [NAV] = LAYOUT_WRAPPER(
-        _______, KC_TAB,  XXXXXXX,  TABL,    TABR,    KC_VOLU, RESET,   HOME,    KC_UP,   END,     KC_DEL, _______,
-        _______, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  KC_VOLD, KC_CAPS, KC_LEFT, KC_DOWN, KC_RGHT, KC_BSPC, _______,
-        _______, SPCL,    SPC_R,   BACK,    FWD,     KC_MPLY, XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX, KC_ENT,  _______,
+        _______, KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLU, RESET,   XXXXXXX, XXXXXXX, KC_DEL,  KC_BSPC, _______,
+        _______, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  KC_VOLD, KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX, KC_ENT,  _______,
                              _______, _______, _______, _______, _______, _______ ),
 
   [NUM] = LAYOUT_WRAPPER(
@@ -76,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
     case LA_SYM:
-    case LA_NAV:
+    /* case LA_NAV: */
         return true;
     default:
         return false;
@@ -87,6 +79,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
     case LA_SYM:
     case LA_NAV:
+    case LA_NUM:
     case KC_LSFT:
     case OS_SHFT:
     case OS_CTRL:
@@ -123,11 +116,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, SYM, NAV, NUM);
-}
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*     return update_tri_layer_state(state, SYM, NAV, NUM); */
+/* } */
 
 #ifdef OLED_DRIVER_ENABLE
+
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     if (!is_keyboard_master()) {
       return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
@@ -138,20 +132,20 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (layer_state) {
-        case MTGAP:
+        case DEF:
             oled_write_ln_P(PSTR("MTGAP"), false);
             break;
-        case SYMBOL:
+        case SYM:
             oled_write_ln_P(PSTR("SYM"), false);
             break;
-        case NUM_NAV:
+        case NAV:
+            oled_write_ln_P(PSTR("NAV"), false);
+            break;
+        case NUM:
             oled_write_ln_P(PSTR("NUM"), false);
             break;
-        case ADJUST:
-            oled_write_ln_P(PSTR("ADJS"), false);
-            break;
         default:
-            oled_write_ln_P(PSTR("Undefined"), false);
+            oled_write_ln_P(PSTR("<undefined>"), false);
     }
 }
 
