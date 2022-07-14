@@ -43,18 +43,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_Y,   KC_P,    KC_O,    KC_U,    KC_J,     KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    XXXXXXX,
         XXXXXXX, KC_I,   KC_N,    KC_E,    KC_A,    KC_COMM,  KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    XXXXXXX,
         XXXXXXX, KC_Q,   KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN,  KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    XXXXXXX,
-                             XXXXXXX,  LA_NAV,  KC_SPC, KC_ENT,  LA_SYM,  XXXXXXX ),
+                             XXXXXXX,  LA_NAV,  KC_SPC, KC_ESC,  LA_SYM,  XXXXXXX ),
 
     [SYM] = LAYOUT_WRAPPER(
         _______, KC_ESC,  KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD, KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC, KC_GRV,  _______,
         _______, KC_MINS, KC_ASTR, KC_EQL,  KC_UNDS, KC_DLR,  KC_HASH, OS_CMD,  OS_CTRL, OS_ALT,  OS_SHFT, _______,
-        _______, KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_PERC, KC_QUOT, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM, _______,
+        _______, KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_QUOT, KC_PERC, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM, _______,
                              _______, _______, _______, _______, _______, _______ ),
 
     [NAV] = LAYOUT_WRAPPER(
-        _______, KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLU, RESET,   XXXXXXX, XXXXXXX, KC_DEL,  KC_BSPC, _______,
+        _______, KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLU, RESET,   KC_PGDN, KC_PGUP, KC_DEL,  KC_BSPC, _______,
         _______, OS_SHFT, OS_ALT,  OS_CTRL, OS_CMD,  KC_VOLD, KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGDN, KC_PGUP, XXXXXXX, KC_ENT,  _______,
+        _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, S_GER,   A_UML,   O_UML,   U_UML,   KC_ENT,  _______,
                              _______, _______, _______, _______, _______, _______ ),
 
     [NUM] = LAYOUT_WRAPPER(
