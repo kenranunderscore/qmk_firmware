@@ -1,2 +1,1 @@
-OLED_DRIVER_ENABLE = yes
-SRC += oneshot.c
+OLED_ENABLE = yes
