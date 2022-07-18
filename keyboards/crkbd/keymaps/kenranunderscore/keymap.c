@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] = LAYOUT_WRAPPER(
         KC_TAB,  MTGAP_TOP_L, MTGAP_TOP_R, KC_ESC,
-        KC_BSPC, MTGAP_MID_L, MTGAP_MID_R, KC_QUOT,
+        MC(BSPC),MTGAP_MID_L, MTGAP_MID_R, KC_QUOT,
         O(LSFT), MTGAP_BOT_L, MTGAP_BOT_R, O(RSFT),
         XXXXXXX,  LA_NAV,  KC_SPC, KC_ENT,  LA_SYM,  XXXXXXX ),
 

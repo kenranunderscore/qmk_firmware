@@ -10,41 +10,30 @@
   #include "ssd1306.h"
 #endif
 
-#define LA_SYM MO(SYM)
-#define LA_NAV MO(NAV)
-
-enum keycodes {
-    // Custom oneshot mod implementation with no timers.
-    OS_SHFT = SAFE_RANGE,
-    OS_CTRL,
-    OS_ALT,
-    OS_CMD,
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] = LAYOUT_WRAPPER(
-        XXXXXXX, ROW_5_BLANK,                   ROW_5_BLANK, XXXXXXX,
+        XXXXXXX, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, XXXXXXX,
         KC_TAB,  MTGAP_TOP_L,                   MTGAP_TOP_R, KC_ESC,
-        KC_BSPC, MTGAP_MID_L,                   MTGAP_MID_R, KC_QUOT,
+        MC(BSPC),MTGAP_MID_L,                   MTGAP_MID_R, KC_QUOT,
         O(LSFT), MTGAP_BOT_L, XXXXXXX, XXXXXXX, MTGAP_BOT_R, O(RSFT),
         XXXXXXX, XXXXXXX, LA_NAV,  KC_SPC,  KC_ENT,  LA_SYM, XXXXXXX, XXXXXXX ),
 
     [SYM] = LAYOUT_WRAPPER(
-        XXXXXXX, ROW_5_BLANK,                   ROW_5_BLANK, XXXXXXX,
+        XXXXXXX, ROW_5_TRANSP,                 ROW_5_TRANSP, XXXXXXX,
         _______, SYM_TOP_L,                       SYM_TOP_R, _______,
         _______, SYM_MID_L,                       SYM_MID_R, _______,
         _______, SYM_BOT_L,   XXXXXXX, XXXXXXX,   SYM_BOT_R, _______,
         _______, _______, _______, _______, _______, _______, _______, _______ ),
 
     [NAV] = LAYOUT_WRAPPER(
-        XXXXXXX, ROW_5_BLANK,                   ROW_5_BLANK, XXXXXXX,
+        XXXXXXX, ROW_5_TRANSP,                 ROW_5_TRANSP, XXXXXXX,
         _______, NAV_TOP_L,                       NAV_TOP_R, _______,
         _______, NAV_MID_L,                       NAV_MID_R, _______,
         _______, NAV_BOT_L,   XXXXXXX, XXXXXXX,   NAV_BOT_R, _______,
         _______, _______, _______, _______, _______, _______, _______, _______ ),
 
     [NUM] = LAYOUT_WRAPPER(
-        XXXXXXX, ROW_5_BLANK,                   ROW_5_BLANK, XXXXXXX,
+        XXXXXXX, ROW_5_TRANSP,                 ROW_5_TRANSP, XXXXXXX,
         _______, NUM_TOP_L,                       NUM_TOP_R, _______,
         _______, NUM_MID_L,                       NUM_MID_R, _______,
         _______, NUM_BOT_L,   XXXXXXX, XXXXXXX,   NUM_BOT_R, _______,

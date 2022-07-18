@@ -8,10 +8,10 @@
 #define LT2(kc) LT(NAV, KC_##kc)
 #define LT3(kc) LT(NUM, KC_##kc)
 
+
 /* Layer modifiers */
-#define LM1 MO(SYM)
-#define LM2 MO(NAV)
-#define LM3 MO(NUM)
+#define LA_SYM MO(SYM)
+#define LA_NAV MO(NAV)
 
 /* Mod taps */
 #define MA(kc) LALT_T(KC_##kc)
