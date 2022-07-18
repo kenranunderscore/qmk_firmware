@@ -36,3 +36,11 @@ bool is_oneshot_cancel_key(uint16_t keycode);
 // change keys allows stacking multiple oneshot modifiers, and carrying them
 // between layers.
 bool is_oneshot_ignored_key(uint16_t keycode);
+
+enum keycodes {
+    // Custom oneshot mod implementation with no timers.
+    OS_SHFT = SAFE_RANGE,
+    OS_CTRL,
+    OS_ALT,
+    OS_CMD,
+};

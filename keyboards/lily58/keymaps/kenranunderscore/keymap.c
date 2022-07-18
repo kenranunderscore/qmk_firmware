@@ -139,7 +139,7 @@ bool oled_task_user(void) {
   } else {
     oled_write(read_logo(), false);
   }
-    return false;
+  return false;
 }
 
 #endif // OLED_ENABLE
