@@ -50,7 +50,7 @@
 // right             ┌────────┬────────┬────────┬────────┬────────┐
 #define SYM_TOP_R     KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC, KC_GRV
 #define SYM_MID_R     KC_HASH, OS_CMD,  OS_CTRL, OS_ALT,  OS_SHFT
-#define SYM_BOT_R     KC_PERC, KC_AMPR, KC_SCLN, KC_COLN, KC_EXLM
+#define SYM_BOT_R     KC_PERC, KC_AMPR, KC_LT,   KC_GT,   KC_EXLM
 
 /* Numbers, function keys, and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┐
