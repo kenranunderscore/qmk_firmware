@@ -59,7 +59,7 @@
 #define NAV_BOT_L     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 
 // right             ┌────────┬────────┬────────┬────────┬────────┐
-#define NAV_TOP_R     XXXXXXX, KC_PGDN, KC_PGUP, KC_DEL,  KC_BSPC
+#define NAV_TOP_R     KC_PGDN, KC_PGUP, KC_DEL,  KC_BSPC, KC_ESC
 #define NAV_MID_R     KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
 #define NAV_BOT_R     S_GER,   A_UML,   O_UML,   U_UML,   KC_ENT
 
