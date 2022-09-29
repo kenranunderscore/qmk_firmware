@@ -14,38 +14,96 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "kenranunderscore.h"
+#include "oneshot.h"
 #include QMK_KEYBOARD_H
+
+#define LA_SYM MO(SYM)
+#define LA_NAV MO(NAV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] =
     LAYOUT_WRAPPER(
-                   MTGAP_TOP_L,                                                                          MTGAP_TOP_R,
-                   MTGAP_MID_L,                                                                          MTGAP_MID_R,
-                   MTGAP_BOT_L,               KC_PGUP, KC_PGDN,          KC_HOME, KC_END,                MTGAP_BOT_R,
-                   XXXXXXX, THMB_L1, THMB_L2, THMB_L3, XXXXXXX,          XXXXXXX, THMB_R1, THMB_R2, THMB_R3, XXXXXXX
+                   KC_TAB, MTGAP_TOP_L, MTGAP_TOP_R, KC_ESC,
+                   MC(BSPC), MTGAP_MID_L, MTGAP_MID_R, KC_QUOT,
+                   KC_LSFT, MTGAP_BOT_L, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R, KC_RSFT,
+                   XXXXXXX, XXXXXXX, LA_NAV, KC_SPC, XXXXXXX, XXXXXXX, KC_ENT, LA_SYM, XXXXXXX, XXXXXXX
                    ),
-    [SYMBOL] =
+    [SYM] =
     LAYOUT_WRAPPER(
-                   SYMBOL_TOP_L,                                                                        SYMBOL_TOP_R,
-                   SYMBOL_MID_L,                                                                        SYMBOL_MID_R,
-                   SYMBOL_BOT_L,              _______, _______,          _______, _______,              SYMBOL_BOT_R,
+                   _______, SYM_TOP_L,                                                                        SYM_TOP_R, _______,
+                   _______, SYM_MID_L,                                                                        SYM_MID_R, _______,
+                   _______, SYM_BOT_L,              _______, _______,          _______, _______,              SYM_BOT_R, _______,
                    XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
-    [NUM_NAV] =
+    [NAV] =
     LAYOUT_WRAPPER(
-                   NUM_NAV_TOP_L,                                                                      NUM_NAV_TOP_R,
-                   NUM_NAV_MID_L,                                                                      NUM_NAV_MID_R,
-                   NUM_NAV_BOT_L,             _______, _______,          _______, _______,             NUM_NAV_BOT_R,
+                   _______, NAV_TOP_L,                                                                      NAV_TOP_R, _______,
+                   _______, NAV_MID_L,                                                                      NAV_MID_R, _______,
+                   _______, NAV_BOT_L,             _______, _______,          _______, _______,             NAV_BOT_R, _______,
                    XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
-    [ADJUST] =
+    [NUM] =
     LAYOUT_WRAPPER(
-                   ADJUST_TOP_L,                                                                        ADJUST_TOP_R,
-                   ADJUST_MID_L,                                                                        ADJUST_MID_R,
-                   ADJUST_BOT_L, _______, _______,                       _______, _______,              ADJUST_BOT_R,
+                   _______, NUM_TOP_L,                                                                        NUM_TOP_R, _______,
+                   _______, NUM_MID_L,                                                                        NUM_MID_R, _______,
+                   _______, NUM_BOT_L, _______, _______,                       _______, _______,              NUM_BOT_R, _______,
                    XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
 };
+
+bool is_oneshot_cancel_key(uint16_t keycode) {
+    switch (keycode) {
+    case LA_SYM:
+    case LA_NAV:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool is_oneshot_ignored_key(uint16_t keycode) {
+    switch (keycode) {
+    case LA_SYM:
+    case LA_NAV:
+    case KC_LSFT:
+    case OS_SHFT:
+    case OS_CTRL:
+    case OS_ALT:
+    case OS_CMD:
+        return true;
+    default:
+        return false;
+    }
+}
+
+oneshot_state os_shft_state = os_up_unqueued;
+oneshot_state os_ctrl_state = os_up_unqueued;
+oneshot_state os_alt_state = os_up_unqueued;
+oneshot_state os_cmd_state = os_up_unqueued;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    update_oneshot(
+        &os_shft_state, KC_LSFT, OS_SHFT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_ctrl_state, KC_LCTL, OS_CTRL,
+        keycode, record
+    );
+    update_oneshot(
+        &os_alt_state, KC_LALT, OS_ALT,
+        keycode, record
+    );
+    update_oneshot(
+        &os_cmd_state, KC_LCMD, OS_CMD,
+        keycode, record
+    );
+    return true;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, SYM, NAV, NUM);
+}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -86,13 +144,13 @@ static void render_status(void) {
     case  MTGAP:
         oled_write_P(PSTR("MTGAP\n"), false);
         break;
-    case SYMBOL:
+    case SYM:
         oled_write_P(PSTR("SYM\n"), false);
         break;
-    case NUM_NAV:
+    case NAV:
         oled_write_P(PSTR("NUM\n"), false);
         break;
-    case ADJUST:
+    case NUM:
         oled_write_P(PSTR("ADJS\n"), false);
         break;
     default:
