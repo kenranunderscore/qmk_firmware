@@ -34,7 +34,7 @@
 // left              ┌────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_L   KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
 #define MTGAP_MID_L   KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
-#define MTGAP_BOT_L   KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
+#define MTGAP_BOT_L   KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_QUOT
 
 // right             ┌────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W
@@ -45,7 +45,7 @@
 // left              ┌────────┬────────┬────────┬────────┬────────┐
 #define SYM_TOP_L     KC_ESC,  KC_LBRC, KC_LCBR, KC_LPRN, KC_TILD
 #define SYM_MID_L     KC_MINS, KC_ASTR, KC_EQL,  KC_UNDS, KC_DLR
-#define SYM_BOT_L     KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_QUOT
+#define SYM_BOT_L     KC_PLUS, KC_PIPE, KC_AT,   KC_BSLS, KC_SCLN
 
 // right             ┌────────┬────────┬────────┬────────┬────────┐
 #define SYM_TOP_R     KC_CIRC, KC_RPRN, KC_RCBR, KC_RBRC, KC_GRV
