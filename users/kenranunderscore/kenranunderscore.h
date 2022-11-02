@@ -30,7 +30,7 @@
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
 
-/* MTGAP layout */
+/* Core MTGAP layout */
 // left              ┌────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_L   KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
 #define MTGAP_MID_L   KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM

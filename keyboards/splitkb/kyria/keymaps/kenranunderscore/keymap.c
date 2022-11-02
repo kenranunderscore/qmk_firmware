@@ -23,10 +23,10 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] =
     LAYOUT_WRAPPER(
-                   KC_TAB, MTGAP_TOP_L, MTGAP_TOP_R, KC_ESC,
-                   MC(BSPC), MTGAP_MID_L, MTGAP_MID_R, KC_QUOT,
-                   KC_LSFT, MTGAP_BOT_L, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R, KC_RSFT,
-                   XXXXXXX, XXXXXXX, LA_NAV, KC_SPC, XXXXXXX, XXXXXXX, KC_ENT, LA_SYM, XXXXXXX, XXXXXXX
+                   XXXXXXX, MTGAP_TOP_L, MTGAP_TOP_R, XXXXXXX,
+                   XXXXXXX, MTGAP_MID_L, MTGAP_MID_R, XXXXXXX,
+                   XXXXXXX, MTGAP_BOT_L, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R, XXXXXXX,
+                   XXXXXXX, XXXXXXX, LA_NAV, MC(SPC), XXXXXXX, XXXXXXX, KC_ESC, LA_SYM, XXXXXXX, XXXXXXX
                    ),
     [SYM] =
     LAYOUT_WRAPPER(
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                    _______, NAV_TOP_L,                                                                      NAV_TOP_R, _______,
                    _______, NAV_MID_L,                                                                      NAV_MID_R, _______,
                    _______, NAV_BOT_L,             _______, _______,          _______, _______,             NAV_BOT_R, _______,
-                   XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
+                   XXXXXXX, _______, _______, _______, XXXXXXX,          _______, KC_ENT, _______, _______, XXXXXXX
                    ),
     [NUM] =
     LAYOUT_WRAPPER(
