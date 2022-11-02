@@ -20,32 +20,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "oneshot.h"
 #include QMK_KEYBOARD_H
 
-#define LA_SYM MO(SYM)
-#define LA_NAV MO(NAV)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] = LAYOUT_WRAPPER(
-        KC_TAB,  MTGAP_TOP_L, MTGAP_TOP_R, KC_ESC,
-        MC(BSPC),MTGAP_MID_L, MTGAP_MID_R, KC_QUOT,
-        KC_LSFT, MTGAP_BOT_L, MTGAP_BOT_R, KC_RSFT,
-        XXXXXXX, LA_NAV, MC(SPC), KC_ESC, LA_SYM, XXXXXXX ),
+        MTGAP_TOP_L_6, MTGAP_TOP_R_6,
+        MTGAP_MID_L_6, MTGAP_MID_R_6,
+        MTGAP_BOT_L_6, MTGAP_BOT_R_6,
+        XXXXXXX, TMB_L1, TMB_L2, TMB_R1, TMB_R2, XXXXXXX ),
 
     [SYM] = LAYOUT_WRAPPER(
-        _______, SYM_TOP_L, SYM_TOP_R, _______,
-        _______, SYM_MID_L, SYM_MID_R, _______,
-        _______, SYM_BOT_L, SYM_BOT_R, _______,
+        SYM_TOP_L_6, SYM_TOP_R_6,
+        SYM_MID_L_6, SYM_MID_R_6,
+        SYM_BOT_L_6, SYM_BOT_R_6,
         _______, _______, _______, _______, _______, _______ ),
 
     [NAV] = LAYOUT_WRAPPER(
-        _______, NAV_TOP_L, NAV_TOP_R, _______,
-        _______, NAV_MID_L, NAV_MID_R, _______,
-        _______, NAV_BOT_L, NAV_BOT_R, _______,
+        NAV_TOP_L_6, NAV_TOP_R_6,
+        NAV_MID_L_6, NAV_MID_R_6,
+        NAV_BOT_L_6, NAV_BOT_R_6,
         _______, _______, _______, KC_ENT, _______, _______ ),
 
     [NUM] = LAYOUT_WRAPPER(
-        _______, NUM_TOP_L, NUM_TOP_R, _______,
-        _______, NUM_MID_L, NUM_MID_R, _______,
-        _______, NUM_BOT_L, NUM_BOT_R, _______,
+        NUM_TOP_L_6, NUM_TOP_R_6,
+        NUM_MID_L_6, NUM_MID_R_6,
+        NUM_BOT_L_6, NUM_BOT_R_6,
         _______, _______, _______, _______, _______, _______ ),
 };
 

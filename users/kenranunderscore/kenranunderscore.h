@@ -8,7 +8,6 @@
 #define LT2(kc) LT(NAV, KC_##kc)
 #define LT3(kc) LT(NUM, KC_##kc)
 
-
 /* Layer modifiers */
 #define LA_SYM MO(SYM)
 #define LA_NAV MO(NAV)
@@ -26,6 +25,12 @@
 
 /* One-shot modifiers */
 #define O(mod) OSM(MOD_##mod)
+
+/* Common thumb keys */
+#define TMB_L1 LA_NAV
+#define TMB_L2 MC(SPC)
+#define TMB_R1 KC_ENT
+#define TMB_R2 LA_SYM
 
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
@@ -77,6 +82,39 @@
 // misc              ┌────────┬────────┬────────┬────────┬────────┐
 #define ROW_5_TRANSP  _______, _______, _______, _______, _______
 #define ROW_5_BLANK   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+/* 6-key variants of the rows */
+#define MTGAP_TOP_L_6   KC_TAB,   MTGAP_TOP_L
+#define MTGAP_MID_L_6   MC(BSPC), MTGAP_MID_L
+#define MTGAP_BOT_L_6   KC_LSFT,  MTGAP_BOT_L
+
+#define MTGAP_TOP_R_6   MTGAP_TOP_R, KC_ESC
+#define MTGAP_MID_R_6   MTGAP_MID_R, KC_QUOT
+#define MTGAP_BOT_R_6   MTGAP_BOT_R, KC_RSFT
+
+#define SYM_TOP_L_6     _______, SYM_TOP_L
+#define SYM_MID_L_6     _______, SYM_MID_L
+#define SYM_BOT_L_6     _______, SYM_BOT_L
+
+#define SYM_TOP_R_6     SYM_TOP_R, _______
+#define SYM_MID_R_6     SYM_MID_R, _______
+#define SYM_BOT_R_6     SYM_BOT_R, _______
+
+#define NAV_TOP_L_6     _______, NAV_TOP_L
+#define NAV_MID_L_6     _______, NAV_MID_L
+#define NAV_BOT_L_6     _______, NAV_BOT_L
+
+#define NAV_TOP_R_6     NAV_TOP_R, _______
+#define NAV_MID_R_6     NAV_MID_R, _______
+#define NAV_BOT_R_6     NAV_BOT_R, _______
+
+#define NUM_TOP_L_6     _______, NUM_TOP_L
+#define NUM_MID_L_6     _______, NUM_MID_L
+#define NUM_BOT_L_6     _______, NUM_BOT_L
+
+#define NUM_TOP_R_6     NUM_TOP_R, _______
+#define NUM_MID_R_6     NUM_MID_R, _______
+#define NUM_BOT_R_6     NUM_BOT_R, _______
 
 enum userspace_layers {
     MTGAP = 0,
