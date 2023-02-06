@@ -28,7 +28,7 @@
 
 /* Common thumb keys */
 #define TMB_L1 LA_NAV
-#define TMB_L2 MC(SPC)
+#define TMB_L2 KC_SPC
 #define TMB_R1 KC_ENT
 #define TMB_R2 LA_SYM
 
