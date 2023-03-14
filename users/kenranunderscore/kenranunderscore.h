@@ -27,10 +27,12 @@
 #define O(mod) OSM(MOD_##mod)
 
 /* Common thumb keys */
-#define TMB_L1 LA_NAV
-#define TMB_L2 KC_SPC
+#define TMB_L1 KC_LALT
+#define TMB_L2 LA_NAV
+#define TMB_L3 KC_SPC
 #define TMB_R1 KC_ENT
 #define TMB_R2 LA_SYM
+#define TMB_R3 KC_RALT
 
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
@@ -89,7 +91,7 @@
 #define MTGAP_BOT_L_6   KC_LSFT,  MTGAP_BOT_L
 
 #define MTGAP_TOP_R_6   MTGAP_TOP_R, KC_ESC
-#define MTGAP_MID_R_6   MTGAP_MID_R, KC_QUOT
+#define MTGAP_MID_R_6   MTGAP_MID_R, MC(QUOT)
 #define MTGAP_BOT_R_6   MTGAP_BOT_R, KC_RSFT
 
 #define SYM_TOP_L_6     _______, SYM_TOP_L
