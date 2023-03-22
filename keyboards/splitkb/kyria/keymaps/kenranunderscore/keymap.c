@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                    MTGAP_TOP_L_6, MTGAP_TOP_R_6,
                    MTGAP_MID_L_6, MTGAP_MID_R_6,
                    MTGAP_BOT_L_6, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R_6,
-                   XXXXXXX, XXXXXXX, TMB_L1, TMB_L2, XXXXXXX, XXXXXXX, TMB_R1, TMB_R2, XXXXXXX, XXXXXXX
+                   XXXXXXX, TMB_L1, TMB_L2, TMB_L3, XXXXXXX, XXXXXXX, TMB_R1, TMB_R2, TMB_R3, XXXXXXX
                    ),
     [SYM] =
     LAYOUT_WRAPPER(
