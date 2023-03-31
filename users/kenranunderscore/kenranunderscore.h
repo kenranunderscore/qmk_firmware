@@ -62,9 +62,9 @@
 
 /* Numbers, function keys, and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┐
-#define NAV_TOP_L     KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLU
+#define NAV_TOP_L     RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX
 #define NAV_MID_L     OS_SHFT, OS_ALT,  OS_CTRL, OS_CMD,  KC_VOLD
-#define NAV_BOT_L     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define NAV_BOT_L     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX
 
 // right             ┌────────┬────────┬────────┬────────┬────────┐
 #define NAV_TOP_R     KC_PGDN, KC_PGUP, KC_TAB,  KC_DEL,  KC_BSPC
