@@ -2,6 +2,7 @@
 
 #include "quantum.h"
 #include QMK_KEYBOARD_H
+#include "oneshot.h"
 
 /* Layer taps */
 #define LT1(kc) LT(SYM, KC_##kc)
