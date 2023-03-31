@@ -32,7 +32,7 @@
 #define TMB_L3 KC_SPC
 #define TMB_R1 KC_ENT
 #define TMB_R2 LA_SYM
-#define TMB_R3 KC_RALT
+#define TMB_R3 KC_LALT
 
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
@@ -90,7 +90,7 @@
 #define MTGAP_MID_L_6   MC(BSPC), MTGAP_MID_L
 #define MTGAP_BOT_L_6   KC_LSFT,  MTGAP_BOT_L
 
-#define MTGAP_TOP_R_6   MTGAP_TOP_R, KC_ESC
+#define MTGAP_TOP_R_6   MTGAP_TOP_R, KC_MINS
 #define MTGAP_MID_R_6   MTGAP_MID_R, MC(QUOT)
 #define MTGAP_BOT_R_6   MTGAP_BOT_R, KC_RSFT
 
