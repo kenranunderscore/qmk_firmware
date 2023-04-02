@@ -1,1 +1,2 @@
 #define EE_HANDS
+#define SPLIT_WATCHDOG_ENABLE
