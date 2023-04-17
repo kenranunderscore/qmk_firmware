@@ -13,6 +13,9 @@
 #define LA_SYM MO(SYM)
 #define LA_NAV MO(NAV)
 
+/* Layer toggles */
+#define TGQWRTY TG(QWERTY)
+
 /* Mod taps */
 #define MA(kc) LALT_T(KC_##kc)
 #define MC(kc) LCTL_T(KC_##kc)
@@ -62,7 +65,7 @@
 
 /* Numbers, function keys, and navigation */
 // left              ┌────────┬────────┬────────┬────────┬────────┐
-#define NAV_TOP_L     RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX
+#define NAV_TOP_L     RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, TGQWRTY
 #define NAV_MID_L     OS_SHFT, OS_ALT,  OS_CTRL, OS_CMD,  KC_VOLD
 #define NAV_BOT_L     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX
 
@@ -81,6 +84,17 @@
 #define NUM_TOP_R     KC_6,    KC_7,    KC_8,    KC_9,    KC_0
 #define NUM_MID_R     KC_F10,  OS_CMD,  OS_CTRL, OS_ALT,  OS_SHFT
 #define NUM_BOT_R     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
+
+/* Core QWERTY layout for roguelikes */
+// left              ┌────────┬────────┬────────┬────────┬────────┐
+#define QWERTY_TOP_L   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
+#define QWERTY_MID_L   KC_A,    KC_S,    KC_D,    KC_F,    KC_G
+#define QWERTY_BOT_L   KC_Z,    KC_X,    KC_Z,    KC_V,    KC_B
+
+// right             ┌────────┬────────┬────────┬────────┬────────┐
+#define QWERTY_TOP_R   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
+#define QWERTY_MID_R   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
+#define QWERTY_BOT_R   KC_N,    KC_M,    KC_LT,   KC_GT,   KC_SLSH
 
 // misc              ┌────────┬────────┬────────┬────────┬────────┐
 #define ROW_5_TRANSP  _______, _______, _______, _______, _______
@@ -119,9 +133,18 @@
 #define NUM_MID_R_6     NUM_MID_R, _______
 #define NUM_BOT_R_6     NUM_BOT_R, _______
 
+#define QWERTY_TOP_L_6  KC_TAB,   QWERTY_TOP_L
+#define QWERTY_MID_L_6  MC(BSPC), QWERTY_MID_L
+#define QWERTY_BOT_L_6  KC_LSFT,  QWERTY_BOT_L
+
+#define QWERTY_TOP_R_6  QWERTY_TOP_R, KC_MINS
+#define QWERTY_MID_R_6  QWERTY_MID_R, MC(QUOT)
+#define QWERTY_BOT_R_6  QWERTY_BOT_R, KC_RSFT
+
 enum userspace_layers {
     MTGAP = 0,
     SYM,
     NAV,
     NUM,
+    QWERTY,
 };
