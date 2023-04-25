@@ -31,12 +31,12 @@
 #define O(mod) OSM(MOD_##mod)
 
 /* Common thumb keys */
-#define TMB_L1 KC_LALT
+#define TMB_L1 KC_LCTL
 #define TMB_L2 LA_NAV
 #define TMB_L3 KC_SPC
 #define TMB_R1 KC_ENT
 #define TMB_R2 LA_SYM
-#define TMB_R3 KC_LALT
+#define TMB_R3 KC_LCTL
 
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
@@ -102,11 +102,11 @@
 
 /* 6-key variants of the rows */
 #define MTGAP_TOP_L_6   KC_TAB,   MTGAP_TOP_L
-#define MTGAP_MID_L_6   MC(BSPC), MTGAP_MID_L
+#define MTGAP_MID_L_6   MA(BSPC), MTGAP_MID_L
 #define MTGAP_BOT_L_6   KC_LSFT,  MTGAP_BOT_L
 
 #define MTGAP_TOP_R_6   MTGAP_TOP_R, KC_MINS
-#define MTGAP_MID_R_6   MTGAP_MID_R, MC(QUOT)
+#define MTGAP_MID_R_6   MTGAP_MID_R, MA(QUOT)
 #define MTGAP_BOT_R_6   MTGAP_BOT_R, KC_RSFT
 
 #define SYM_TOP_L_6     _______, SYM_TOP_L
@@ -134,11 +134,11 @@
 #define NUM_BOT_R_6     NUM_BOT_R, _______
 
 #define QWERTY_TOP_L_6  KC_TAB,   QWERTY_TOP_L
-#define QWERTY_MID_L_6  MC(BSPC), QWERTY_MID_L
+#define QWERTY_MID_L_6  MA(BSPC), QWERTY_MID_L
 #define QWERTY_BOT_L_6  KC_LSFT,  QWERTY_BOT_L
 
 #define QWERTY_TOP_R_6  QWERTY_TOP_R, KC_MINS
-#define QWERTY_MID_R_6  QWERTY_MID_R, MC(QUOT)
+#define QWERTY_MID_R_6  QWERTY_MID_R, MA(QUOT)
 #define QWERTY_BOT_R_6  QWERTY_BOT_R, KC_RSFT
 
 enum userspace_layers {
