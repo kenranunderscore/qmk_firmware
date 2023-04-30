@@ -4,11 +4,6 @@
 #include QMK_KEYBOARD_H
 #include "oneshot.h"
 
-/* Layer taps */
-#define LT1(kc) LT(SYM, KC_##kc)
-#define LT2(kc) LT(NAV, KC_##kc)
-#define LT3(kc) LT(NUM, KC_##kc)
-
 /* Layer modifiers */
 #define LA_SYM MO(SYM)
 #define LA_NAV MO(NAV)
@@ -35,7 +30,7 @@
 #define TMB_L2 LA_NAV
 #define TMB_L3 KC_SPC
 #define TMB_R1 KC_ENT
-#define TMB_R2 LA_SYM
+#define TMB_R2 LT(SYM, KC_ESC)
 #define TMB_R3 KC_LCTL
 
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
