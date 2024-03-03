@@ -79,7 +79,7 @@
 
 // right             ┌────────┬────────┬────────┬────────┬────────┬────────┐
 #define NUM_TOP_R     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
-#define NUM_MID_R     _______, KC_CIRC, KC_DLR,  KC_UNDS, _______, _______
+#define NUM_MID_R     _______, KC_CIRC, KC_UNDS, KC_BSLS, KC_DLR,  _______
 #define NUM_BOT_R     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______
 
 // left              ┌────────┬────────┬────────┬────────┬────────┬────────┐
