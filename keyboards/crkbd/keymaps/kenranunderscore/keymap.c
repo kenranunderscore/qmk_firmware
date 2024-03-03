@@ -27,6 +27,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MTGAP_BOT_L, MTGAP_BOT_R,
         TMB_L1, TMB_L2, TMB_L3, TMB_R1, TMB_R2, TMB_R3 ),
 
+    [QWERTY] = LAYOUT_WRAPPER(
+        QWERTY_TOP_L, QWERTY_TOP_R,
+        QWERTY_MID_L, QWERTY_MID_R,
+        QWERTY_BOT_L, QWERTY_BOT_R,
+        TMB_L1, TMB_L2, TMB_L3, TMB_R1, TMB_R2, TMB_R3 ),
+
     [SYM] = LAYOUT_WRAPPER(
         SYM_TOP_L, SYM_TOP_R,
         SYM_MID_L, SYM_MID_R,
@@ -57,9 +63,12 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
-    switch (layer_state) {
+    switch (get_highest_layer(layer_state)) {
         case MTGAP:
             oled_write_ln_P(PSTR("MTGAP"), false);
+            break;
+        case QWERTY:
+            oled_write_ln_P(PSTR("QWERTY"), false);
             break;
         case SYM:
             oled_write_ln_P(PSTR("SYM"), false);
