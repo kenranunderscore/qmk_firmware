@@ -1,4 +1,4 @@
-SRC              += kenranunderscore.c oneshot.c
+SRC              +=
 
 COMBO_ENABLE      = no
 MOUSEKEY_ENABLE   = no        # Mouse keys
