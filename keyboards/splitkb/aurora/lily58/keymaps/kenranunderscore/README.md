@@ -6,7 +6,7 @@
 
 # Flashing
 
-- Press the reset button on the PCB
+- Press the reset button **twice**
 - Mount the device somewhere, like `sudo mount /dev/sdc1 /media/usb`
 - `cp my_firmware.uf2 /media/usb`
 - Done

@@ -14,96 +14,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "kenranunderscore.h"
-#include "oneshot.h"
 #include QMK_KEYBOARD_H
-
-#define LA_SYM MO(SYM)
-#define LA_NAV MO(NAV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] =
     LAYOUT_WRAPPER(
-                   MTGAP_TOP_L_6, MTGAP_TOP_R_6,
-                   MTGAP_MID_L_6, MTGAP_MID_R_6,
-                   MTGAP_BOT_L_6, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R_6,
+                   MTGAP_TOP_L, MTGAP_TOP_R,
+                   MTGAP_MID_L, MTGAP_MID_R,
+                   MTGAP_BOT_L_M, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R_M,
                    XXXXXXX, TMB_L1, TMB_L2, TMB_L3, XXXXXXX, XXXXXXX, TMB_R1, TMB_R2, TMB_R3, XXXXXXX
                    ),
     [SYM] =
     LAYOUT_WRAPPER(
-                   SYM_TOP_L_6,                                                                        SYM_TOP_R_6,
-                   SYM_MID_L_6,                                                                        SYM_MID_R_6,
-                   SYM_BOT_L_6,              _______, _______,          _______, _______,              SYM_BOT_R_6,
-                   XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
-                   ),
-    [NAV] =
-    LAYOUT_WRAPPER(
-                   NAV_TOP_L_6,                                                                      NAV_TOP_R_6,
-                   NAV_MID_L_6,                                                                      NAV_MID_R_6,
-                   NAV_BOT_L_6,             _______, _______,          _______, _______,             NAV_BOT_R_6,
-                   XXXXXXX, _______, _______, _______, XXXXXXX,          _______, KC_ENT, _______, _______, XXXXXXX
+                   SYM_TOP_L,                                                               SYM_TOP_R,
+                   SYM_MID_L,                                                               SYM_MID_R,
+                   SYM_BOT_L,               _______, _______, _______, _______,           SYM_BOT_R,
+                   XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
     [NUM] =
     LAYOUT_WRAPPER(
-                   NUM_TOP_L_6,                                                                        NUM_TOP_R_6,
-                   NUM_MID_L_6,                                                                        NUM_MID_R_6,
-                   NUM_BOT_L_6, _______, _______,                       _______, _______,              NUM_BOT_R_6,
-                   XXXXXXX, _______, _______, _______, XXXXXXX,          XXXXXXX, _______, _______, _______, XXXXXXX
+                   NUM_TOP_L,                                                               NUM_TOP_R,
+                   NUM_MID_L,                                                               NUM_MID_R,
+                   NUM_BOT_L,               _______, _______, _______, _______,           NUM_BOT_R,
+                   XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
+                   ),
+    [NAV] =
+    LAYOUT_WRAPPER(
+                   NAV_TOP_L,                                                               NAV_TOP_R,
+                   NAV_MID_L,                                                               NAV_MID_R,
+                   NAV_BOT_L,               _______, _______, _______, _______,           NAV_BOT_R,
+                   XXXXXXX, _______, _______, _______, XXXXXXX, _______, KC_ENT, _______, _______, XXXXXXX
                    ),
 };
-
-bool is_oneshot_cancel_key(uint16_t keycode) {
-    switch (keycode) {
-    case LA_SYM:
-    case LA_NAV:
-        return true;
-    default:
-        return false;
-    }
-}
-
-bool is_oneshot_ignored_key(uint16_t keycode) {
-    switch (keycode) {
-    case LA_SYM:
-    case LA_NAV:
-    case KC_LSFT:
-    case OS_SHFT:
-    case OS_CTRL:
-    case OS_ALT:
-    case OS_CMD:
-        return true;
-    default:
-        return false;
-    }
-}
-
-oneshot_state os_shft_state = os_up_unqueued;
-oneshot_state os_ctrl_state = os_up_unqueued;
-oneshot_state os_alt_state = os_up_unqueued;
-oneshot_state os_cmd_state = os_up_unqueued;
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    update_oneshot(
-        &os_shft_state, KC_LSFT, OS_SHFT,
-        keycode, record
-    );
-    update_oneshot(
-        &os_ctrl_state, KC_LCTL, OS_CTRL,
-        keycode, record
-    );
-    update_oneshot(
-        &os_alt_state, KC_LALT, OS_ALT,
-        keycode, record
-    );
-    update_oneshot(
-        &os_cmd_state, KC_LCMD, OS_CMD,
-        keycode, record
-    );
-    return true;
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, SYM, NAV, NUM);
-}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -140,28 +82,28 @@ static void render_status(void) {
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state)) {
-    case  MTGAP:
+    switch (get_highest_layer(layer_state) | default_layer_state) {
+    case MTGAP:
         oled_write_P(PSTR("MTGAP\n"), false);
         break;
     case SYM:
         oled_write_P(PSTR("SYM\n"), false);
         break;
     case NAV:
-        oled_write_P(PSTR("NUM\n"), false);
+        oled_write_P(PSTR("NAV\n"), false);
         break;
     case NUM:
-        oled_write_P(PSTR("ADJS\n"), false);
+        oled_write_P(PSTR("NUM\n"), false);
         break;
     default:
-        oled_write_P(PSTR("Undefined\n"), false);
+        oled_write_P(PSTR("<undefined>\n"), false);
     }
 
     // Host Keyboard LED Status
-    uint8_t led_usb_state = host_keyboard_leds();
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_NUM_LOCK) ? PSTR("NUMLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_CAPS_LOCK) ? PSTR("CAPLCK ") : PSTR("       "), false);
-    oled_write_P(IS_LED_ON(led_usb_state, USB_LED_SCROLL_LOCK) ? PSTR("SCRLCK ") : PSTR("       "), false);
+    uint8_t led_usb_state = host_keyboard_led_state();
+    oled_write_P(led_usb_state.num_lock ? PSTR("NUMLCK ") : PSTR("       "), false);
+    oled_write_P(led_usb_state.caps_lock ? PSTR("CAPLCK ") : PSTR("       "), false);
+    oled_write_P(led_usb_state.scroll_lock ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
 void oled_task_user(void) {
@@ -177,9 +119,9 @@ void oled_task_user(void) {
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (clockwise) {
-        tap_code(KC_PGUP);
+        tap_code(KC_VOLU);
     } else {
-        tap_code(KC_PGDN);
+        tap_code(KC_VOLD);
     }
     return true;
 }
