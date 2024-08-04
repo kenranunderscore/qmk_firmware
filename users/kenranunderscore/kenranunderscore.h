@@ -27,62 +27,93 @@
 
 /* Common keys */
 #define TMB_L1 KC_LALT
-#define TMB_L2 LT(NUM, KC_ESC)
+#define TMB_L2 LT(NUM, KC_BSPC)
 #define TMB_L3 KC_SPC
 #define TMB_R1 KC_ENT
 #define TMB_R2 LT(SYM, KC_ESC)
 #define TMB_R3 KC_LGUI
 #define NAV_TAB LT(NAV, KC_TAB)
-#define D_MTGAP DF(MTGAP)
+#define NAV_Y LT(NAV, KC_Y)
 
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
 
-// IDEA: use top-left MG for (some new?) navigation layer instead?
-
 /* Core MTGAP layout */
-// left                ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define MTGAP_TOP_L     NAV_TAB, KC_Y,    KC_P,    KC_O,    KC_U,    KC_J
-#define MTGAP_MID_L     MC(BSPC),KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
-#define MTGAP_BOT_L     KC_LSFT, KC_Q,    KC_Z,    KC_SLSH, KC_DOT,  KC_SCLN
-#define MTGAP_BOT_L_M   KC_LSFT, MS(Q),   MA(Z),   MC(SLSH),MG(DOT), KC_SCLN
+// left              ┌────────┬────────┬────────┬────────┬────────┐
+#define MTGAP_TOP_L   NAV_Y,   KC_P,    KC_O,    KC_U,    KC_J
+#define MTGAP_MID_L   KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
+#define MTGAP_BOT_L   MS(Q),   MA(Z),   MC(SLSH),MG(DOT), KC_SCLN
 
-// right               ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define MTGAP_TOP_R     KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    MG(MINS)
-#define MTGAP_MID_R     KC_M,    KC_H,    KC_T,    KC_S,    KC_R,    MC(QUOT)
-#define MTGAP_BOT_R     KC_B,    KC_F,    KC_G,    KC_V,    KC_X,    KC_RSFT
-#define MTGAP_BOT_R_M   KC_B,    MG(F),   MC(G),   MA(V),   MS(X),   KC_RSFT
+#define MTGAP_TOP_L_6 NAV_TAB,  MTGAP_TOP_L
+#define MTGAP_MID_L_6 MC(BSPC), MTGAP_MID_L
+#define MTGAP_BOT_L_6 KC_LSFT,  MTGAP_BOT_L
 
-// left                ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define SYM_TOP_L       _______, KC_EXLM, KC_HASH, KC_LCBR, KC_RCBR, KC_GRV
-#define SYM_MID_L       _______, KC_ASTR, KC_EQL,  KC_LPRN, KC_RPRN, KC_TILD
-#define SYM_BOT_L       _______, KC_PLUS, KC_PIPE, KC_LBRC, KC_RBRC, KC_PERC
+// right             ┌────────┬────────┬────────┬────────┬────────┐
+#define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W
+#define MTGAP_MID_R   KC_M,    KC_H,    KC_T,    KC_S,    KC_R
+#define MTGAP_BOT_R   KC_B,    MG(F),   MC(G),   MA(V),   MS(X)
 
-// right               ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define SYM_TOP_R       _______, _______, _______, _______, _______, _______
-#define SYM_MID_R       _______, _______, _______, _______, _______, _______
-#define SYM_BOT_R       _______, _______, _______, _______, _______, _______
+#define MTGAP_TOP_R_6 MTGAP_TOP_R, MG(MINS)
+#define MTGAP_MID_R_6 MTGAP_MID_R, MC(QUOT)
+#define MTGAP_BOT_R_6 MTGAP_BOT_R, MG(RSFT)
 
-// left                ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define NUM_TOP_L       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5
-#define NUM_MID_L       _______, _______, _______, _______, _______, _______
-#define NUM_BOT_L       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+// left              ┌────────┬────────┬────────┬────────┬────────┐
+#define SYM_TOP_L     KC_EXLM, KC_QUOT, KC_LCBR, KC_RCBR, KC_GRV
+#define SYM_MID_L     KC_ASTR, KC_DQT,  KC_LPRN, KC_RPRN, KC_TILD
+#define SYM_BOT_L     KC_EQL,  KC_PIPE, KC_LBRC, KC_RBRC, KC_PERC
 
-// right               ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define NUM_TOP_R       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______
-#define NUM_MID_R       _______, KC_CIRC, KC_UNDS, KC_BSLS, KC_DLR,  _______
-#define NUM_BOT_R       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______
+#define SYM_TOP_L_6   _______, SYM_TOP_L
+#define SYM_MID_L_6   _______, SYM_MID_L
+#define SYM_BOT_L_6   _______, SYM_BOT_L
 
-// left                ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define NAV_TOP_L       XXXXXXX, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX
-#define NAV_MID_L       _______, _______, _______, _______, _______, KC_VOLD
-#define NAV_BOT_L       _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX
+// right             ┌────────┬────────┬────────┬────────┬────────┐
+#define SYM_TOP_R     _______, _______, _______, _______, _______
+#define SYM_MID_R     _______, _______, _______, _______, _______
+#define SYM_BOT_R     _______, _______, _______, _______, _______
 
-// right               ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define NAV_TOP_R       KC_PGDN, KC_PGUP, KC_TAB,  KC_DEL,  KC_BSPC, _______
-#define NAV_MID_R       KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______
-#define NAV_BOT_R       S_GER,   A_UML,   O_UML,   U_UML,   KC_ENT,  _______
+#define SYM_TOP_R_6   SYM_TOP_R, _______
+#define SYM_MID_R_6   SYM_MID_R, _______
+#define SYM_BOT_R_6   SYM_BOT_R, _______
 
-// misc                ┌────────┬────────┬────────┬────────┬────────┬────────┐
-#define ROW_6_TRANSP    _______, _______, _______, _______, _______, _______
-#define ROW_6_BLANK     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+// left              ┌────────┬────────┬────────┬────────┬────────┐
+#define NUM_TOP_L     KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define NUM_MID_L     _______, _______, _______, _______, _______
+#define NUM_BOT_L     MS(F1),  MA(F2),  MC(F3),  MG(F4),  KC_F5
+
+#define NUM_TOP_L_6   _______, NUM_TOP_L
+#define NUM_MID_L_6   _______, NUM_MID_L
+#define NUM_BOT_L_6   _______, NUM_BOT_L
+
+// right             ┌────────┬────────┬────────┬────────┬────────┐
+#define NUM_TOP_R     KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define NUM_MID_R     KC_BSLS, KC_CIRC, KC_MINS, KC_UNDS, KC_DLR
+#define NUM_BOT_R     KC_F6,   MG(F7),  MC(F8),  MA(F9),  MS(F10)
+
+#define NUM_TOP_R_6   NUM_TOP_R, _______
+#define NUM_MID_R_6   NUM_MID_R, _______
+#define NUM_BOT_R_6   NUM_BOT_R, _______
+
+// left              ┌────────┬────────┬────────┬────────┬────────┐
+#define NAV_TOP_L     RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX
+#define NAV_MID_L     _______, _______, _______, _______, KC_VOLD
+#define NAV_BOT_L     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX
+
+#define NAV_TOP_L_6   XXXXXXX, NAV_TOP_L
+#define NAV_MID_L_6   _______, NAV_MID_L
+#define NAV_BOT_L_6   _______, NAV_BOT_L
+
+// right             ┌────────┬────────┬────────┬────────┬────────┐
+#define NAV_TOP_R     KC_PGDN, KC_PGUP, KC_TAB,  KC_DEL,  KC_BSPC
+#define NAV_MID_R     KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+#define NAV_BOT_R     S_GER,   A_UML,   O_UML,   U_UML,   KC_ENT
+
+#define NAV_TOP_R_6   NAV_TOP_R, _______
+#define NAV_MID_R_6   NAV_MID_R, _______
+#define NAV_BOT_R_6   NAV_BOT_R, _______
+
+// misc              ┌────────┬────────┬────────┬────────┬────────┐
+#define ROW_TRANSP    _______, _______, _______, _______, _______
+#define ROW_BLANK     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+
+#define ROW_6_TRANSP  ROW_TRANSP, _______
+#define ROW_6_BLANK   ROW_BLANK,  XXXXXXX

@@ -21,33 +21,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] = LAYOUT_WRAPPER(
-        MTGAP_TOP_L, MTGAP_TOP_R,
-        MTGAP_MID_L, MTGAP_MID_R,
-        MTGAP_BOT_L, MTGAP_BOT_R,
-        TMB_L1, TMB_L2, TMB_L3, TMB_R1, TMB_R2, TMB_R3 ),
-
-    [QWERTY] = LAYOUT_WRAPPER(
-        QWERTY_TOP_L, QWERTY_TOP_R,
-        QWERTY_MID_L, QWERTY_MID_R,
-        QWERTY_BOT_L, QWERTY_BOT_R,
-        TMB_L1, TMB_L2, TMB_L3, TMB_R1, TMB_R2, TMB_R3 ),
+        XXXXXXX, MTGAP_TOP_L, MTGAP_TOP_R, XXXXXXX,
+        XXXXXXX, MTGAP_MID_L, MTGAP_MID_R, XXXXXXX,
+        XXXXXXX, MTGAP_BOT_L, MTGAP_BOT_R, XXXXXXX,
+        XXXXXXX, TMB_L2, TMB_L3, TMB_R1, TMB_R2, XXXXXXX ),
 
     [SYM] = LAYOUT_WRAPPER(
-        SYM_TOP_L, SYM_TOP_R,
-        SYM_MID_L, SYM_MID_R,
-        SYM_BOT_L, SYM_BOT_R,
+        SYM_TOP_L_6, SYM_TOP_R_6,
+        SYM_MID_L_6, SYM_MID_R_6,
+        SYM_BOT_L_6, SYM_BOT_R_6,
         _______, _______, _______, _______, _______, _______ ),
 
     [NUM] = LAYOUT_WRAPPER(
-        NUM_TOP_L, NUM_TOP_R,
-        NUM_MID_L, NUM_MID_R,
-        NUM_BOT_L, NUM_BOT_R,
+        NUM_TOP_L_6, NUM_TOP_R_6,
+        NUM_MID_L_6, NUM_MID_R_6,
+        NUM_BOT_L_6, NUM_BOT_R_6,
         _______, _______, _______, _______, _______, _______ ),
 
     [NAV] = LAYOUT_WRAPPER(
-        NAV_TOP_L, NAV_TOP_R,
-        NAV_MID_L, NAV_MID_R,
-        NAV_BOT_L, NAV_BOT_R,
+        NAV_TOP_L_6, NAV_TOP_R_6,
+        NAV_MID_L_6, NAV_MID_R_6,
+        NAV_BOT_L_6, NAV_BOT_R_6,
         _______, _______, _______, _______, _______, _______ ),
 };
 
@@ -62,12 +56,9 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state)) {
+    switch (get_highest_layer(layer_state) | default_layer_state) {
         case MTGAP:
             oled_write_ln_P(PSTR("MTGAP"), false);
-            break;
-        case QWERTY:
-            oled_write_ln_P(PSTR("QWERTY"), false);
             break;
         case SYM:
             oled_write_ln_P(PSTR("SYM"), false);

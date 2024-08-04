@@ -6,7 +6,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, XXXXXXX,
         MTGAP_TOP_L,                   MTGAP_TOP_R,
         MTGAP_MID_L,                   MTGAP_MID_R,
-        MTGAP_BOT_L, XXXXXXX, XXXXXXX, MTGAP_BOT_R,
+        MTGAP_BOT_L_M, XXXXXXX, XXXXXXX, MTGAP_BOT_R_M,
         XXXXXXX, TMB_L1, TMB_L2,  TMB_L3,  TMB_R1,  TMB_R2, TMB_R3, XXXXXXX ),
 
     [SYM] = LAYOUT_WRAPPER(
@@ -20,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ROW_6_TRANSP,                      ROW_6_TRANSP,
         NUM_TOP_L,                       NUM_TOP_R,
         NUM_MID_L,                       NUM_MID_R,
-        NUM_BOT_L,   XXXXXXX, XXXXXXX,   NUM_BOT_R,
+        NUM_BOT_L_M,   XXXXXXX, XXXXXXX,   NUM_BOT_R_M,
         _______, _______, _______, _______, _______, _______, _______, _______ ),
 
     [NAV] = LAYOUT_WRAPPER(

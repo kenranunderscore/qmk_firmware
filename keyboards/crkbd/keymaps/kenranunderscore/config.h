@@ -30,7 +30,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL_PD2
 
+// Pick good defaults for enabling homerow modifiers
+#define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 150
 
 #ifdef RGBLIGHT_ENABLE
     #undef RGBLED_NUM

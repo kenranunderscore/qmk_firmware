@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LAYOUT_WRAPPER(
                    NUM_TOP_L,                                                               NUM_TOP_R,
                    NUM_MID_L,                                                               NUM_MID_R,
-                   NUM_BOT_L,               _______, _______, _______, _______,           NUM_BOT_R,
+                   NUM_BOT_L_M,               _______, _______, _______, _______,           NUM_BOT_R_M,
                    XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
                    ),
     [NAV] =
