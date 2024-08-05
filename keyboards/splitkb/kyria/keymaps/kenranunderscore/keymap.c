@@ -19,35 +19,35 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] =
     LAYOUT_WRAPPER(
-                   MTGAP_TOP_L, MTGAP_TOP_R,
-                   MTGAP_MID_L, MTGAP_MID_R,
-                   MTGAP_BOT_L_M, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MTGAP_BOT_R_M,
-                   XXXXXXX, TMB_L1, TMB_L2, TMB_L3, XXXXXXX, XXXXXXX, TMB_R1, TMB_R2, TMB_R3, XXXXXXX
-                   ),
+        XXXXXXX, MTGAP_TOP_L,                                       MTGAP_TOP_R, XXXXXXX,
+        XXXXXXX, MTGAP_MID_L,                                       MTGAP_MID_R, XXXXXXX,
+        XXXXXXX, MTGAP_BOT_L, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, MTGAP_BOT_R, XXXXXXX,
+        XXXXXXX, XXXXXXX, TMB_L2, TMB_L3, XXXXXXX, XXXXXXX, TMB_R1, TMB_R2, XXXXXXX, XXXXXXX
+        ),
     [SYM] =
     LAYOUT_WRAPPER(
-                   SYM_TOP_L,                                                               SYM_TOP_R,
-                   SYM_MID_L,                                                               SYM_MID_R,
-                   SYM_BOT_L,               _______, _______, _______, _______,           SYM_BOT_R,
-                   XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
-                   ),
+        XXXXXXX, SYM_TOP_L,                                                               SYM_TOP_R, XXXXXXX,
+        XXXXXXX, SYM_MID_L,                                                               SYM_MID_R, XXXXXXX,
+        XXXXXXX, SYM_BOT_L,               _______, _______,   _______, _______,           SYM_BOT_R, XXXXXXX,
+        XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
+        ),
     [NUM] =
     LAYOUT_WRAPPER(
-                   NUM_TOP_L,                                                               NUM_TOP_R,
-                   NUM_MID_L,                                                               NUM_MID_R,
-                   NUM_BOT_L_M,               _______, _______, _______, _______,           NUM_BOT_R_M,
-                   XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
-                   ),
+        XXXXXXX, NUM_TOP_L,                                                               NUM_TOP_R, XXXXXXX,
+        XXXXXXX, NUM_MID_L,                                                               NUM_MID_R, XXXXXXX,
+        XXXXXXX, NUM_BOT_L,               _______, _______,   _______, _______,           NUM_BOT_R, XXXXXXX,
+        XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
+        ),
     [NAV] =
     LAYOUT_WRAPPER(
-                   NAV_TOP_L,                                                               NAV_TOP_R,
-                   NAV_MID_L,                                                               NAV_MID_R,
-                   NAV_BOT_L,               _______, _______, _______, _______,           NAV_BOT_R,
-                   XXXXXXX, _______, _______, _______, XXXXXXX, _______, KC_ENT, _______, _______, XXXXXXX
-                   ),
+        XXXXXXX, NAV_TOP_L,                                                               NAV_TOP_R, XXXXXXX,
+        XXXXXXX, NAV_MID_L,                                                               NAV_MID_R, XXXXXXX,
+        XXXXXXX, NAV_BOT_L,               _______, _______,   _______, _______,           NAV_BOT_R, XXXXXXX,
+        XXXXXXX, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, XXXXXXX
+        ),
 };
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_180;
 }
@@ -82,7 +82,7 @@ static void render_status(void) {
 
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state) | default_layer_state) {
+    switch (get_highest_layer(layer_state | default_layer_state)) {
     case MTGAP:
         oled_write_P(PSTR("MTGAP\n"), false);
         break;
@@ -100,18 +100,19 @@ static void render_status(void) {
     }
 
     // Host Keyboard LED Status
-    uint8_t led_usb_state = host_keyboard_led_state();
+    led_t led_usb_state = host_keyboard_led_state();
     oled_write_P(led_usb_state.num_lock ? PSTR("NUMLCK ") : PSTR("       "), false);
     oled_write_P(led_usb_state.caps_lock ? PSTR("CAPLCK ") : PSTR("       "), false);
     oled_write_P(led_usb_state.scroll_lock ? PSTR("SCRLCK ") : PSTR("       "), false);
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
         render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
     } else {
         render_kyria_logo();
     }
+    return false;
 }
 #endif
 
