@@ -35,6 +35,8 @@
 #define NAV_TAB LT(NAV, KC_TAB)
 #define NAV_Y LT(NAV, KC_Y)
 
+#define OS_SHFT OSM(MOD_LSFT)
+
 /* A wrapper around the LAYOUT macro to pass through evaluated arguments. */
 #define LAYOUT_WRAPPER(...) LAYOUT(__VA_ARGS__)
 
@@ -44,18 +46,23 @@
 #define MTGAP_MID_L   KC_I,    KC_N,    KC_E,    KC_A,    KC_COMM
 #define MTGAP_BOT_L   MS(Q),   MA(Z),   MC(SLSH),MG(DOT), KC_SCLN
 
-#define MTGAP_TOP_L_6 NAV_TAB,  MTGAP_TOP_L
-#define MTGAP_MID_L_6 MC(BSPC), MTGAP_MID_L
-#define MTGAP_BOT_L_6 KC_LSFT,  MTGAP_BOT_L
+#define MTGAP_TOP_L_6 NAV_TAB, MTGAP_TOP_L
+#define MTGAP_MID_L_6 KC_BSPC, MTGAP_MID_L
+#define MTGAP_BOT_L_6 KC_LSFT, MTGAP_BOT_L
+
+#define MTGAP_TOP_L_6_ALT NAV_TAB, KC_Y, KC_P, KC_O, KC_U, KC_J
+#define MTGAP_BOT_L_6_ALT OS_SHFT, KC_Q, MA(Z), MC(SLSH), MG(DOT), KC_SCLN
 
 // right             ┌────────┬────────┬────────┬────────┬────────┐
 #define MTGAP_TOP_R   KC_K,    KC_D,    KC_L,    KC_C,    KC_W
 #define MTGAP_MID_R   KC_M,    KC_H,    KC_T,    KC_S,    KC_R
 #define MTGAP_BOT_R   KC_B,    MG(F),   MC(G),   MA(V),   MS(X)
 
-#define MTGAP_TOP_R_6 MTGAP_TOP_R, MG(MINS)
-#define MTGAP_MID_R_6 MTGAP_MID_R, MC(QUOT)
-#define MTGAP_BOT_R_6 MTGAP_BOT_R, MG(RSFT)
+#define MTGAP_TOP_R_6 MTGAP_TOP_R, KC_MINS
+#define MTGAP_MID_R_6 MTGAP_MID_R, KC_QUOT
+#define MTGAP_BOT_R_6 MTGAP_BOT_R, KC_RSFT
+
+#define MTGAP_BOT_R_6_ALT KC_B, MG(F), MC(G), MA(V), KC_X, OSM(MOD_RSFT)
 
 // left              ┌────────┬────────┬────────┬────────┬────────┐
 #define SYM_TOP_L     KC_EXLM, KC_QUOT, KC_LCBR, KC_RCBR, KC_GRV
@@ -94,9 +101,9 @@
 #define NUM_BOT_R_6   NUM_BOT_R, _______
 
 // left              ┌────────┬────────┬────────┬────────┬────────┐
-#define NAV_TOP_L     RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX
-#define NAV_MID_L     _______, _______, _______, _______, KC_VOLD
-#define NAV_BOT_L     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX
+#define NAV_TOP_L     XXXXXXX, RGB_HUI, RGB_SAI, RGB_VAI, RGB_TOG
+#define NAV_MID_L     RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD
+#define NAV_BOT_L     KC_LSFT, KC_LALT, KC_LCTL, KC_LGUI, XXXXXXX
 
 #define NAV_TOP_L_6   XXXXXXX, NAV_TOP_L
 #define NAV_MID_L_6   _______, NAV_MID_L

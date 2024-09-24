@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] = LAYOUT_WRAPPER(
-        XXXXXXX, MTGAP_TOP_L, MTGAP_TOP_R, XXXXXXX,
-        XXXXXXX, MTGAP_MID_L, MTGAP_MID_R, XXXXXXX,
-        XXXXXXX, MTGAP_BOT_L, MTGAP_BOT_R, XXXXXXX,
+        MTGAP_TOP_L_6_ALT, MTGAP_TOP_R_6,
+        MTGAP_MID_L_6, MTGAP_MID_R_6,
+        MTGAP_BOT_L_6_ALT, MTGAP_BOT_R_6_ALT,
         XXXXXXX, TMB_L2, TMB_L3, TMB_R1, TMB_R2, XXXXXXX ),
 
     [SYM] = LAYOUT_WRAPPER(
@@ -56,7 +56,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state) | default_layer_state) {
+    switch (get_highest_layer(layer_state | default_layer_state)) {
         case MTGAP:
             oled_write_ln_P(PSTR("MTGAP"), false);
             break;
