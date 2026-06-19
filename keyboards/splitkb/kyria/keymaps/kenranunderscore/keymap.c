@@ -19,30 +19,30 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MTGAP] =
     LAYOUT_WRAPPER(
-        XXXXXXX, MTGAP_TOP_L,                                       MTGAP_TOP_R, XXXXXXX,
-        XXXXXXX, MTGAP_MID_L,                                       MTGAP_MID_R, XXXXXXX,
-        XXXXXXX, MTGAP_BOT_L, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, MTGAP_BOT_R, XXXXXXX,
+        MTGAP_TOP_L_6,                                       MTGAP_TOP_R_6,
+        MTGAP_MID_L_6,                                       MTGAP_MID_R_6,
+        MTGAP_BOT_L_6, XXXXXXX, XXXXXXX,   XXXXXXX, XXXXXXX, MTGAP_BOT_R_6,
         XXXXXXX, XXXXXXX, TMB_L2, TMB_L3, XXXXXXX, XXXXXXX, TMB_R1, TMB_R2, XXXXXXX, XXXXXXX
         ),
     [SYM] =
     LAYOUT_WRAPPER(
-        XXXXXXX, SYM_TOP_L,                                                               SYM_TOP_R, XXXXXXX,
-        XXXXXXX, SYM_MID_L,                                                               SYM_MID_R, XXXXXXX,
-        XXXXXXX, SYM_BOT_L,               _______, _______,   _______, _______,           SYM_BOT_R, XXXXXXX,
+        SYM_TOP_L_6,                                                               SYM_TOP_R_6,
+        SYM_MID_L_6,                                                               SYM_MID_R_6,
+        SYM_BOT_L_6,               _______, _______,   _______, _______,           SYM_BOT_R_6,
         XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
         ),
     [NUM] =
     LAYOUT_WRAPPER(
-        XXXXXXX, NUM_TOP_L,                                                               NUM_TOP_R, XXXXXXX,
-        XXXXXXX, NUM_MID_L,                                                               NUM_MID_R, XXXXXXX,
-        XXXXXXX, NUM_BOT_L,               _______, _______,   _______, _______,           NUM_BOT_R, XXXXXXX,
+        NUM_TOP_L_6,                                                               NUM_TOP_R_6,
+        NUM_MID_L_6,                                                               NUM_MID_R_6,
+        NUM_BOT_L_6,               _______, _______,   _______, _______,           NUM_BOT_R_6,
         XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX
         ),
     [NAV] =
     LAYOUT_WRAPPER(
-        XXXXXXX, NAV_TOP_L,                                                               NAV_TOP_R, XXXXXXX,
-        XXXXXXX, NAV_MID_L,                                                               NAV_MID_R, XXXXXXX,
-        XXXXXXX, NAV_BOT_L,               _______, _______,   _______, _______,           NAV_BOT_R, XXXXXXX,
+        NAV_TOP_L_6,                                                               NAV_TOP_R_6,
+        NAV_MID_L_6,                                                               NAV_MID_R_6,
+        NAV_BOT_L_6,               _______, _______,   _______, _______,           NAV_BOT_R_6,
         XXXXXXX, _______, _______, _______, XXXXXXX, _______, _______, _______, _______, XXXXXXX
         ),
 };
